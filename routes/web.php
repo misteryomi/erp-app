@@ -23,5 +23,5 @@ Route::get('/logout', 'AuthController@logout')->name('logout');
 Route::middleware('auth')->group(function() use ($sub_routes) {
     Route::get('/', 'DashboardController@index')->name('home');
 
-    Route::get('/documents', 'Documents\FileManagerController');
+    Route::get('/documents', 'Documents\FileManagerController')->name('documents');
 });

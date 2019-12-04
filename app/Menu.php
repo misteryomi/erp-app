@@ -46,6 +46,8 @@ class Menu extends Model
     public function isActivePage() {
         $current_route = \Request::route()->getName();
 
+        if($current_route == $this->route) return true;
+
         $children_routes = $this->children()->pluck('route')->toArray();
 
         if(in_array($current_route, $children_routes)) return true;

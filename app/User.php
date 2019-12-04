@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Http\Controllers\Tickets\TicketsUser;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar'
     ];
 
     /**
@@ -56,7 +57,10 @@ class User extends Authenticatable
     }
 
     public function getAvatarAttribute($value) {
-        return file_exists($value) ? $value : asset('assets/img/avatar2.jpg');
+
+        $avatar = url(Storage::url($value));
+
+        return file_exists(storage_path('app/'.$value)) ? $avatar : asset('assets/img/avatar2.jpg');
     }
 
 

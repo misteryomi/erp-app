@@ -17,7 +17,7 @@
               @if($route->canViewRoute())
                 <li class="nav-item">
                     <a class="nav-link {{ $route->isActivePage() ? 'active' : '' }}" @if($route->hasChildren()) href="#navbar-submenu-{{ $route->id }}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="#navbar-submenu-{{ $route->id }}" @else href="{{ $route->route ? route($route->route) : $route->url }}" @endif @if($route->is_external) target="_blank" @endif>
-                        <i class="{{ $route->icon ? $route->icon : 'fa fa-home' }} text-light"></i>
+                        <i class="{{ $route->icon ? $route->icon : 'fa fa-home' }} {{ $route->isActivePage() ? 'text-default' : 'text-light' }}"></i>
                         <span class="nav-link-text">{{ $route->title }}</span>
                     </a>
                 </li>
