@@ -1,0 +1,17 @@
+
+.carousel-indicators li {
+    background-color: #1d3152;
+}
+.nav-link.active {
+    color: rgba(27, 27, 27, 0.65)!important;
+}
+.nav-link.active .nav-link-text {
+    font-weight: bold;
+}
+.irs_pagination {
+    margin-top: 40px!important;
+    text-align: center;
+}
+.nav-link.active > i.fa {
+    color: #172b4d!important;
+}
