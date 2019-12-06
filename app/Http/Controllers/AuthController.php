@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use MikeMcLin\WpPassword\Facades\WpPassword;
 
 
 class AuthController extends Controller
@@ -34,7 +36,7 @@ class AuthController extends Controller
         $validation = Validator::make($request->all(), [
                             'username' => 'required|unique:users',
                             'email' => 'required|email|unique:users',
-                            'password' => 'required'
+                            'password' => 'required|confirmed'
                         ]);
 
         if($validation->fails()) {
@@ -42,10 +44,14 @@ class AuthController extends Controller
         }
 
         $requestData = $request->all();
-        $requestData['password'] = Hash::make($requestData['password']);
-        $user = $this->user->create($requestData);
+        $userData = $request->only(['username', 'password', 'date_registered', 'name', 'level', 'sub_unit', 'designation', 'dob', 'sex']);
+        $userData['name'] = $request->first_name .' '. $request->last_name;
 
-        $user->details()->create();
+        $user = $this->user->create($userData);
+
+        $userDetailsData = \array_diff($requestData, $userData, $request->only(['first_name', 'last_name', '_token']));
+
+        $user->details()->create($userDetailsData);
 
         return redirect()->route('login')->withMessage('Account created successfully. Please login to continue');
     }
@@ -56,17 +62,34 @@ class AuthController extends Controller
 
     public function postLogin(Request $request){
 
-        $user = $this->user->where('email', $request->username)->orWhere('user_nicename', $request->username)->first();
+        $user = $this->user->where('email', $request->username)->orWhere('username', $request->username)->first();
+
 
         if (!$user) {
             return redirect()->back()->withError('Invalid username/password');
         }
 
+        //Check first if wordpress password could work
+        $this->attemptLoginWithWP($request, $user);
+
+        //Else proceed with normal login
         if(!Auth::attempt(['email' => $user->email, 'password' => $request->password], $request->remember_me)){
             return redirect()->route('login')->withError('Invalid username or password');
         }
 
         return redirect()->intended(route('home'));
+    }
+
+
+    /**
+     * Attempt to log user in with Wordpress password
+     */
+    private function attemptLoginWithWP(Request $request, $user) {
+        if(WpPassword::check($request->password, $user->password)) {
+            Auth::loginUsingId($user->id, $request->remember_me);
+
+            return redirect()->intended(route('home'));
+        }
     }
 
 

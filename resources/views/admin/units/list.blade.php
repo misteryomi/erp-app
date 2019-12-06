@@ -40,7 +40,7 @@
                             @php $count =  ($units ->currentpage()-1) * $units ->perpage() + $loop->index + 1; @endphp
                             <tr>
                                 <td>{{ $count }}</td>
-                                <td><a href="{{ route('tickets.admin.units.show', ['unit_id' => $unit->id]) }}">{{ $unit->name }}</a></td>
+                                <td><a href="{{ route('admin.units.show', ['unit' => $unit->id]) }}">{{ $unit->name }}</a></td>
                                 <td>{{ $unit->department->name }}</td>
                                 <td>{{ $unit->tickets->count() }}</td>
                                 <td>{{ $unit->staff->count() }}</td>
@@ -89,7 +89,7 @@
                     <div class="form-group">
                         <label for="unit">Team Lead</label>
 
-                        <select required class="form-control select2"  name="team_lead_id" id="staff">
+                        <select required class="form-control select2" name="team_lead_id" id="staff">
                             <option value="">Select team lead</option>
                             @if($vendors->count() > 0)
                             @foreach($vendors as $user)
@@ -172,7 +172,7 @@
 
     $(document).ready(function() {
 
-      $('.select2').select2();
+    //   $('.select2').select2();
 
         //fetch depts
         $.get("{{ route('api.departments.list') }}", (res) => {
@@ -210,7 +210,7 @@
                 formObj[item.name] = item.value
             });
 
-            $.post("{{ route('tickets.admin.units.post.store') }}", formData)
+            $.post("{{ route('admin.units.post.store') }}", formData)
             .done((res) => {
                 alert(`Unit created successfully! . Click OK to continue`);
                 window.location.reload();
@@ -237,7 +237,7 @@
                 formObj[item.name] = item.value
             });
 
-            $.post("{{ route('tickets.admin.units.assign.post.store') }}", formData)
+            $.post("{{ route('admin.units.assign.post.store') }}", formData)
             .done((res) => {
                 alert(`Assignment has been successfully processed! . Click OK to continue`);
                 window.location.reload();

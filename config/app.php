@@ -167,6 +167,7 @@ return [
          */
 
         Spatie\Permission\PermissionServiceProvider::class,
+        MikeMcLin\WpPassword\WpPasswordProvider::class,
 
 
         /*

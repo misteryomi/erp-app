@@ -11,11 +11,11 @@ class Menu extends Model
     protected $guarded = [];
 
     public function children() {
-        return $this->where('parent_id', $this->id)->get();
+        return $this->where('parent_id', $this->id)->orderBy('child_order')->get();
     }
 
     public function parent() {
-        return $this->hasOne(Menu::class, 'id', 'parent_id');
+        return $this->where('id', $this->parent_id)->first();
     }
 
     public function hasChildren() {

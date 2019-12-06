@@ -100,7 +100,7 @@ class TicketsController extends Controller
         }
 
         $assignmentLog = $ticket->allAssignedTo()->latest()->get();
-        $units = $this->user->unit ? \App\Models\Tickets\DepartmentUnit::where('department_id', $this->user->unit->unit->department->id)->with('categories', 'staff')->get() : new Collection();
+        $units = $this->user->unit ? \App\Models\DepartmentUnit::where('department_id', $this->user->unit->unit->department->id)->with('categories', 'staff')->get() : new Collection();
         $unitsJson =  $units->toJson();
 
         $conversations = $ticket->conversations()->latest()->paginate(10);

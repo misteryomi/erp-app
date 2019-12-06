@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('tickets.admin.layouts.menu')
     <div class="doc-content-section-inner">
         <h5>Ticket #{{ $ticket->ticket_id }}</h5>
         <h1 class="mb-3">{{ $ticket->title }}</h1>

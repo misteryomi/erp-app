@@ -95,7 +95,7 @@
                                     @foreach($menus as $menu)
                                             <td>{{ $count }}</td>
                                             <td><a href="{{ $menu->route ? route($menu->route) : $menu->url}}">{{ $menu->title }}</a>                                            </td>
-                                            <td>{{ ($menu->parent) ? $menu->parent->title : '' }}</a>                                            </td>
+                                            <td>{{ ($menu->parent()) ? $menu->parent()->title : '' }}</a>                                            </td>
                                             <td>
                                                 @foreach($menu->roles as $role)
                                                 {{ $role->name }},
@@ -107,7 +107,10 @@
                                                 @endforeach
                                             </td>
                                             <td>{{ $menu->created_at->toDayDateTimeString() }}</td>
-                                            <td><a href="#" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i></td>
+                                            <td>
+                                                <a href="{{ route('admin.menus.edit', ['menu' => $menu->id]) }}" class="btn btn-warning btn-sm" title="Edit"><i class="fa fa-pen"></i>
+                                                <a href="{{ route('admin.menus.delete', ['menu' => $menu->id]) }}" class="btn btn-danger btn-sm" title="Delete"><i class="fa fa-trash"></i>
+                                            </td>
                                         </tr>
                                         @php $count++; @endphp
                                     @endforeach

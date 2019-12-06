@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TicketCreated extends Mailable implements ShouldQueue
+class TicketClosed extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

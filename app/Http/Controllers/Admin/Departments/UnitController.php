@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Tickets\Admin;
+namespace App\Http\Controllers\Admin\Departments;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UnitRequest;
 use App\Http\Requests\UserUnitRequest;
 use App\Http\Controllers\Controller;
-use App\Models\Tickets\DepartmentUnit;
-use App\Models\Tickets\UserUnit;
-use \App\Models\Tickets\TicketVendor;
+use App\Models\DepartmentUnit;
+use App\Models\UserUnit;
+use App\Models\Tickets\TicketVendor;
+
 use App\User;
 
 class UnitController extends Controller
@@ -16,7 +17,7 @@ class UnitController extends Controller
     private $unit;
     private $userUnit;
     private $vendor;
-        
+
     function __construct(DepartmentUnit $unit, UserUnit $userUnit, TicketVendor $vendor) {
         $this->unit = $unit;
         $this->userUnit = $userUnit;
@@ -25,10 +26,10 @@ class UnitController extends Controller
 
     public function index() {
         $units = $this->unit->orderBy('name')->paginate(15);
-        $users = $this->vendor->paginate(15); //[FIX LATER!] retrieve only the ones not yet assigned to a unit 
+        $users = $this->vendor->paginate(15); //[FIX LATER!] retrieve only the ones not yet assigned to a unit
         $vendors = $this->vendor->all();
-        
-        return view('tickets.admin.units.list', compact('units', 'users', 'vendors'));
+
+        return view('admin.units.list', compact('units', 'users', 'vendors'));
     }
 
     public function store(UnitRequest $request) {
@@ -65,7 +66,7 @@ class UnitController extends Controller
 
         $staff = $unit->staff();
         $departments = \App\Models\Department::all();
- 
+
         $vendors = $this->vendor->whereNotIn('id', $staff->pluck('id')->toArray())->get();
 
         if($request->has('remove')) {
@@ -80,7 +81,7 @@ class UnitController extends Controller
 
         $staff = $staff->paginate(15);
 
-        return view('tickets.admin.units.show', compact('unit', 'staff', 'departments', 'vendors'));
+        return view('admin.units.show', compact('unit', 'staff', 'departments', 'vendors'));
     }
 
 
@@ -99,7 +100,7 @@ class UnitController extends Controller
 
         $unit->categories()->delete(); //Delete related categories
         $unit->delete();
-  
+
         return redirect()->back()->withMessage('Unit deleted successfully!')->withAlertClass('alert-success');
      }
 
@@ -112,7 +113,7 @@ class UnitController extends Controller
             return redirect()->back()->withMessage('Vendor can only be removed if in more than one unit')->withAlertClass('alert-danger');
         }
 
-        $userUnit->delete();  
+        $userUnit->delete();
         return redirect()->back()->withMessage('Vendor removed successfully!')->withAlertClass('alert-success');
     }
 

@@ -69,9 +69,80 @@ class MenuController extends Controller
             }
         }
 
-
-
         return redirect()->back()->withMessage('Menu added successfully');
     }
 
+
+    public function edit(Menu $menu) {
+
+        $menus = $this->menu->get();
+        $permissions = $this->permission->all();
+        $roles = $this->role->all();
+
+        return view('admin.menu.edit', compact('menu', 'menus', 'roles', 'permissions'));
+    }
+
+
+    public function update(Request $request, Menu $menu) {
+
+        $this->validate($request, [
+            'title' => 'required',
+        ]);
+
+        if(!$request->url && !$request->route) {
+            return redirect()->back()->withError('Please specify a route name or external URL!');
+        }
+
+        if($request->route && !\Route::has($request->route)) {
+            return redirect()->back()->withError('Specified route name does not exist!');
+        }
+
+        $requestData = $request->except('_token', 'roles', 'permission', 'parent_order', 'child_order');
+
+        // Menu swapping
+        if($menu->is_parent) {
+            if($request->has('parent_order')) {
+                $requestData['parent_order'] = $request->parent_order - 1;
+            } else {
+                $requestData['parent_order'] =  $menu->where('is_parent', 1)->count() + 1;
+            }
+        } else {
+            if($request->has('child_order')) {
+                $requestData['child_order'] = $request->child_order - 1;
+            } else {
+                $requestData['child_order'] = $menu->parent()->children()->count() + 1;
+            }
+
+        }
+
+
+
+        // $requestData['is_parent'] = !$request->parent_id  ? true : false;
+        // $requestData['is_external'] = $request->url  ? true : false;
+
+        $menu = $menu->update($requestData);
+
+        // if($request->has('roles')) {
+        //     foreach($request->roles as $role) {
+        //         $menu->menu_roles()->create([
+        //             'role_id' => $role
+        //         ]);
+        //     }
+        // }
+
+        // if($request->has('permissions')) {
+        //     foreach($request->permissions as $permission) {
+        //         $menu->menu_permissions()->create([
+        //             'permission_id' => $permission
+        //         ]);
+        //     }
+        // }
+
+        return redirect()->route('admin.menus.index')->withMessage('Menu updated successfully');
+    }
+
+
+    public function delete() {
+
+    }
 }

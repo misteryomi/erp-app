@@ -4,6 +4,8 @@ namespace App\Models\Tickets;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\UserUnit;
+
 
 class TicketVendor extends Authenticatable
 {
@@ -37,7 +39,7 @@ class TicketVendor extends Authenticatable
      * Filter the record of ticket vendors
      * @param $users - collection
      * @param $request
-     * 
+     *
      * @return collection
      */
     public function filterData($users, $request) {
@@ -56,7 +58,7 @@ class TicketVendor extends Authenticatable
 
             //retreive the users assigned to that unit
             $users = $users->whereHas('unit', function($query) use ($units) {
-                            $query->whereIn('id', $units);            
+                            $query->whereIn('id', $units);
                         });
         }
 
@@ -69,19 +71,19 @@ class TicketVendor extends Authenticatable
                     break;
                 case 'Newest':
                     $users = $users->latest();
-                    break;            
+                    break;
                 case 'A-Z':
                     $users = $users->orderBy('display_name');
                     break;
                 case 'Z-A':
                     $users = $users->orderBy('display_name', 'desc');
-                    break;            
+                    break;
                 case 'Highest Assigned Tickets':
                     $users = $users->withCount('assignedTickets')->orderBy('assigned_tickets_count', 'desc');
                     break;
                 case 'Lowest Assigned Tickets':
                     $users = $users->withCount('assignedTickets')->orderBy('assigned_tickets_count');
-                    break;   
+                    break;
 
                 default:
                     break;
@@ -90,5 +92,5 @@ class TicketVendor extends Authenticatable
 
         return $users;
     }
-            
+
 }

@@ -60,7 +60,7 @@
           <div class="modal-content">
             <div class="modal-body">
               <h6 class="text-primary mb-4">Add a new department</h6>
-              <form action="{{ route('tickets.admin.departments.post.store') }}" method="post">
+              <form action="{{ route('admin.departments.post.store') }}" method="post">
               @csrf
                 <div class="form-group">
                   <label>Department Name</label>

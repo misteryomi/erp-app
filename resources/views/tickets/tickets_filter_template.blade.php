@@ -1,4 +1,4 @@
-    <form action="" method="get">        
+    <form action="" method="get">
             <div class="form-group row">
                 <input type="hidden" name="sort" value="true" />
                 <div class="col-md-2">
@@ -21,7 +21,7 @@
                     <div id="reportrange" class="form-control">
                         <i class="fa fa-calendar"></i>&nbsp;
                         <span></span> <i class="fa fa-caret-down"></i>
-                    </div>                    
+                    </div>
                     <input type="hidden" id="date_from" name="from" />
                     <input type="hidden" id="date_to" name="to" />
                 </div>

@@ -31,7 +31,7 @@ class UserController extends Controller
         } else {
             $users = $this->user->orderBy('name');
         }
-        
+
         if($request->has('activate')) {
             $this->activateUser($request);
         }
@@ -52,7 +52,7 @@ class UserController extends Controller
 
         //get stats of all ticket statuses
         $stats = (new \App\Models\Tickets\Status)->getUserTicketsStatusStats($user->id, true);
-        
+
         $departments = \App\Models\Department::all();
 
         if($request->has('sort')) {
@@ -73,22 +73,22 @@ class UserController extends Controller
      * Create a vendor account
      */
     public function store(UserStoreRequest $request) {
-        //Generate random password for user 
-         $password = \str_random(10);         
-         
+        //Generate random password for user
+         $password = \str_random(10);
+
          $request->merge(["password"=> Hash::make($password)]);
-         
-         $user = $this->user->create($request->only('name', 'password', 'email')); 
+
+         $user = $this->user->create($request->only('name', 'password', 'email'));
 
          $user->unit()->create([
-             'user_id' => $user->id, 
+             'user_id' => $user->id,
              'unit_id' => $request->unit_id
          ]);
-         
+
         $message = "<p>You have been added as a ticket vendor on IRS. Your login credentials are:</p><p>Username: {$request->email}<br/>Password: {$password}</p>";
-        Mail::to($user->email)->cc($user->unit->group_email)->queue(new NewAccount($message, $user->name));             
-         
-         
+        Mail::to($user->email)->cc($user->unit->group_email)->queue(new NewAccount($message, $user->name));
+
+
          return response(['status' => true, 'message' => "User created successfully!"]);
     }
 
@@ -97,7 +97,7 @@ class UserController extends Controller
      * Assign staff (wp-users) to a unit as a vendor, and create a vendor account for him.
      */
     public function assignStaff(UserAssignRequest $request) {
-        
+
         foreach($request->staff_ids as $id) {
             $staff = User::find($id); //Check the list of all users in wp_users table list
 
@@ -108,10 +108,10 @@ class UserController extends Controller
                     'password' => $staff->password,
                     'user_id' => $staff->id,
                     'is_staff' => true,
-                ]); 
-       
+                ]);
+
                 $user->unit()->create([
-                    'user_id' => $user->id, 
+                    'user_id' => $user->id,
                     'unit_id' => $request->unit_id
                 ]);
             }
@@ -124,7 +124,7 @@ class UserController extends Controller
     /**
      * Handle the activation/deactivation of specified user
      * @param $request
-     * 
+     *
      * @return response
      */
 
@@ -148,9 +148,9 @@ class UserController extends Controller
 
 
     /**
-     * Reset user password and send user activation email with password details 
+     * Reset user password and send user activation email with password details
      * @param $request
-     * 
+     *
      * @return response
      */
 
@@ -161,13 +161,13 @@ class UserController extends Controller
             return redirect()->back()->withMessage('User record not found')->withAlertClass('alert-danger');
         }
 
-        //Generate random password for user 
-        $password = \str_random(10);         
-         
+        //Generate random password for user
+        $password = \str_random(10);
+
         $user->update(["password"=> Hash::make($password)]);
 
         $message = "<p>Your password has been reset by IRS admininistrator. Your login credentials are:</p><p>Username: {$user->email}<br/>Password: {$password}</p>";
-        Mail::to($user->email)->queue(new NewAccount($message, $user->name));             
+        Mail::to($user->email)->queue(new NewAccount($message, $user->name));
 
         return redirect()->back()->withMessage("{$user->name}'s password has been successfully reset !")->withAlertClass('alert-success');
 

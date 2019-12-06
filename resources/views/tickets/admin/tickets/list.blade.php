@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('tickets.admin.layouts.menu')
       <div class="row">
           <div class="col-12 pt-5 pb-4">
             <h4>All Tickets</h4>

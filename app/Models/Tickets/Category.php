@@ -3,13 +3,13 @@
 namespace App\Models\Tickets;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\DepartmentUnit;
 
 class Category extends Model
 {
 
     protected $guarded = [];
-    
+
     /**
      * Return the relationship of each category with it's specified unit
      */
@@ -18,10 +18,10 @@ class Category extends Model
     }
 
     /**
-     * Return the relationship of each category with all it's associated tickets 
+     * Return the relationship of each category with all it's associated tickets
      */
     public function tickets() {
         return $this->hasMany(Ticket::class, 'category_id');
     }
-        
+
 }

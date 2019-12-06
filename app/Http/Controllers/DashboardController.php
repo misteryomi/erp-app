@@ -20,6 +20,8 @@ class DashboardController extends Controller
     }
 
     public function index() {
-        return view('dashboard');
+        $birthdays = $this->user->upcomingBirthdays();
+
+        return view('dashboard', compact('birthdays'));
     }
 }

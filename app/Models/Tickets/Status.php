@@ -18,21 +18,21 @@ class Status extends Model
     /**
      * Returs an ID of the specified status's name
      * @param $name - name of status
-     * 
+     *
      * @return $id
      */
     public function findStatus($name) {
         $status = Self::where('name', $name)->first();
-        
+
         return $status->id;
     }
-    
+
     /**
      * Returns each status ticket_count for specified user
-     * 
+     *
      * @param $user_id
      * @param $is_vendor - boolean
-     * 
+     *
      * @return collection
      */
     public function getUserTicketsStatusCount($user_id, $is_vendor) {
@@ -48,14 +48,14 @@ class Status extends Model
 
         return $stats;
     }
-    
+
 
     /**
      * Returns actual statistics of each status's ticket counts [for specified user]
-     * 
+     *
      * @param $user_id
      * @param $is_vendor - boolean
-     * 
+     *
      * @return collection
      */
 
@@ -67,7 +67,7 @@ class Status extends Model
         foreach($statuses as $status) {
             $stats[$status->name] = $status->tickets_count;
         }
-        
+
         return $stats;
     }
 }

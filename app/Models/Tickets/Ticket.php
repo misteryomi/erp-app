@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\TicketCreatedOnBehalf;
 use App\Mail\TicketAssigned;
 use App\Mail\NotifyCharles;
+use App\Models\DepartmentUnit;
 
 class Ticket extends Model
 {
     use \App\Models\ModelTrait;
-    
+
     protected $guarded = [];
 
     /**
@@ -47,7 +48,7 @@ class Ticket extends Model
     public function getAttachmentAttribute($value) {
         if(!is_null($value)) {
             return config('storage.url').Storage::url($value);
-        }        
+        }
         return null;
     }
 
@@ -107,7 +108,7 @@ class Ticket extends Model
         return $this->hasMany(TicketAssignedUser::class, 'ticket_id');
     }
 
-    /** 
+    /**
      * Retrieve single assignment information
      */
     public function assignment($user_id) {
@@ -115,7 +116,7 @@ class Ticket extends Model
     }
 
     /**
-     * Generate a ticket ID based on the number of tickets created for the current day. 
+     * Generate a ticket ID based on the number of tickets created for the current day.
      */
     public function generateTicketId() {
         //Get the count of tickets crreated today. Then increment by one. 1.
@@ -127,7 +128,7 @@ class Ticket extends Model
 
 
     /**
-     * Assign ticket to the specified user. 
+     * Assign ticket to the specified user.
      */
     public function assignTicket($user_id, $is_on_behalf = false) {
 
@@ -137,17 +138,17 @@ class Ticket extends Model
         //If ticket is created on behalf of the staff.
         if($is_on_behalf) {
             //->cc($ticket->assignedTo->unit->group_email)
-            Mail::to($ticket->user->email)->queue(new TicketCreatedOnBehalf($this));             
+            Mail::to($ticket->user->email)->queue(new TicketCreatedOnBehalf($this));
         } else {
             if($this->assignedTo) {
-                Mail::to($ticket->user->email)->queue(new TicketAssigned($this)); 
+                Mail::to($ticket->user->email)->queue(new TicketAssigned($this));
             }
         }
     }
 
 
     /**
-     * Retrieve assignable/available Staff and create an `assigned` record for specified ticket 
+     * Retrieve assignable/available Staff and create an `assigned` record for specified ticket
      */
     public function assignTicketToAvailableStaff() {
         $assignableStaff = $this->unit->getAssignableStaff();
@@ -155,9 +156,9 @@ class Ticket extends Model
         if($assignableStaff) {
             $this->assignTicket($assignableStaff->id);
         }
-     } 
+     }
 
-    
+
     /**
      * Get tickets that have the pending status and has been created 30 mins ago
      */
@@ -185,7 +186,7 @@ class Ticket extends Model
         return $tickets;
     }
 
-    /** 
+    /**
      * Notify assigned user of pending response to ticket
      */
     public static function remindAssignedUser() {
@@ -198,12 +199,12 @@ class Ticket extends Model
                 $message = "<p>Hello {$vendor->name}.<br/> You are yet to respond to the ticket ID <a href='{{ route('tickets.vendor.show', ['ticket_id'=> $ticket->ticket_id]) }}''>#{{$ticket->ticket_id}}</p>. <p>If further delayed, your unit head would be notified of your delayed response to this ticket. <br/><br/>Thank you</p>";
                 $title = "Ticket #{$ticket->ticket_id} is yet to receive a response";
                 send_email($vendor->name, $vendor->email, $message, route('tickets.vendor.show', ['ticket_id'=> $ticket->ticket_id]), $title);
-    
+
             }
         }
     }
 
-    /** 
+    /**
      * Notify department head of unresponded to tickets
      */
     public static function notifyDepartmentHead() {
@@ -217,12 +218,12 @@ class Ticket extends Model
                 $message = "<p>Dear {$team_lead->name}.<br/> {$vendor->name} is yet to respond to the ticket ID <a href='{{ route('tickets.vendor.show', ['ticket_id'=> $ticket->ticket_id]) }}''>#{{$ticket->ticket_id}}</p>. <p>To reassign this vendor, please log in on the admin dashboard or you could disregard this message.</p>";
                 $title = "Ticket #{$ticket->ticket_id} is yet to receive a response";
                 send_email($team_lead->name, $team_lead->email, $message, route('tickets.admin.tickets.show', ['ticket_id'=> $ticket->ticket_id]), $title);
-    
+
             }
         }
     }
 
-    /** 
+    /**
      * Process reassignment of assigned pending tickets to another staff
      */
     public static function reassignPendingTickets() {
@@ -234,10 +235,10 @@ class Ticket extends Model
             }
         }
     }
-    
+
 
     /**
-     * Display an 'approved' badge if ticket is created on behalf of staff and has been approved. 
+     * Display an 'approved' badge if ticket is created on behalf of staff and has been approved.
      */
     function displayApprovedBadge() {
         return $this->is_on_behalf ? $this->approvedBadge() : '';
@@ -245,14 +246,14 @@ class Ticket extends Model
 
     /**
      * Display the status badge
-     */    
+     */
     public function statusBadge() {
         return "<label class='badge badge-{$this->status->css_class}'> &bullet; {$this->status->name}</label>";
     }
 
     /**
      * Returns the 'approved' status badge
-     */    
+     */
     public function approvedBadge() {
 
         if($this->is_approved) {
@@ -262,16 +263,16 @@ class Ticket extends Model
             $css_class = 'danger';
             $text = 'Unapproved';
         }
-        
+
         return "<label class='badge badge-{$css_class}'> &bullet; {$text}</label>";
     }
-    
+
 
     /**
      * Returns the filtered/sorted data based on user's $request inputs
      * @param $tickets - Collection of tickets to be sorted
-     * @param $request 
-     * 
+     * @param $request
+     *
      * @return collection
      */
 
@@ -279,7 +280,7 @@ class Ticket extends Model
 
             //Sort by latest or oldest
         if($request->has('by')) {
-            $tickets = $request->by == "Oldest" ? $tickets->oldest() : $tickets->latest();            
+            $tickets = $request->by == "Oldest" ? $tickets->oldest() : $tickets->latest();
         }
 
         if($request->has('status')) {
@@ -295,7 +296,7 @@ class Ticket extends Model
                 case 'Unapproved':
                     $tickets = $tickets->where('is_approved', 0);
                     break;
-                
+
                 default:
                     $tickets = $tickets->whereHas('status', function($query) use ($status) {
                                     $query->where('name', strtolower($status));
@@ -303,13 +304,13 @@ class Ticket extends Model
                     break;
             }
         }
-        
+
         if($request->has('from')) {
-            $tickets = $tickets->whereDate('created_at', '>=', $request->from);            
+            $tickets = $tickets->whereDate('created_at', '>=', $request->from);
         }
 
         if($request->has('to')) {
-            $tickets = $tickets->whereDate('created_at', '<=', $request->to);            
+            $tickets = $tickets->whereDate('created_at', '<=', $request->to);
         }
 
         return $tickets;
@@ -320,14 +321,14 @@ class Ticket extends Model
      * Returns a downloadable .xlsx tickets report file
      */
 
-    public function export($tickets) 
+    public function export($tickets)
     {
         return Excel::download(new TicketsExport($tickets), "helpdesk_report_".\Carbon\Carbon::now().".xlsx");
     }
 
     public function storeReport($tickets) {
         $filename = "/reports/helpdesk_report_".\Carbon\Carbon::now()->format('Y-m-d-H:i:s').".xlsx";
-        
+
         Excel::store(new TicketsExport($tickets), $filename);
 
         return $filename;
@@ -337,7 +338,7 @@ class Ticket extends Model
     public function exportTickets($range = 7) {
         $to = Carbon::now();
         $from = $to->subDays($range);
-        
+
         $tickets = $this->whereBetween('created_at', [$from, $to])->get();
 
         $file = $this->storeReport($tickets);
@@ -347,9 +348,9 @@ class Ticket extends Model
     }
 
     public function notifyCharles($email) {
-        
+
         $url = $this->exportTickets();
-        
-        Mail::to($email)->queue(new NotifyCharles($url)); 
-    }    
+
+        Mail::to($email)->queue(new NotifyCharles($url));
+    }
 }

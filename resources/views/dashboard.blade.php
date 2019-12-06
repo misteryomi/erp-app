@@ -65,40 +65,25 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush list my--3">
+                        @foreach($birthdays as $user)
                         <li class="list-group-item px-0">
                             <div class="row align-items-center">
                                 <div class="col-auto">
                                 <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="" src="../../assets/img/theme/team-1.jpg">
+                                <a href="{{ route('profile.show', ['user' => $user->username]) }}" class="avatar rounded-circle">
+                                    <img alt="" src="{{ $user->avatar }}">
                                 </a>
                             </div>
                             <div class="col ml--2">
                                 <h4 class="mb-0">
-                                    <a href="#!">John Michael</a>
+                                   <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
                                 </h4>
                                 <span class="text-success">●</span>
-                                <small>July 25</small>
+                                <small>{{ $user->dob }}</small>
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item px-0">
-                            <div class="row align-items-center">
-                                <div class="col-auto">
-                                <!-- Avatar -->
-                                <a href="#" class="avatar rounded-circle">
-                                    <img alt="" src="../../assets/img/theme/team-1.jpg">
-                                </a>
-                            </div>
-                            <div class="col ml--2">
-                                <h4 class="mb-0">
-                                    <a href="#!">John Michael</a>
-                                </h4>
-                                <span class="text-success">●</span>
-                                <small>July 25</small>
-                                </div>
-                            </div>
-                        </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

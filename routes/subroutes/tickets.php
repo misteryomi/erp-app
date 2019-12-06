@@ -36,21 +36,6 @@ Route::namespace('Tickets')->group(function() {
                         Route::get('/{category}/delete', 'CategoryController@delete')->name('delete');
                     });
 
-                    Route::prefix('units')->name('units.')->group(function() {
-                        Route::get('/', 'UnitController@index')->name('list');
-                        Route::get('/{unit}', 'UnitController@show')->name('show');
-                        Route::get('/new', 'UnitController@new')->name('new');
-                        Route::post('/store', 'UnitController@store')->name('post.store');
-                        Route::post('/{unit}/update', 'UnitController@update')->name('post.update');
-                        Route::post('/assign', 'UnitController@assignUsers')->name('assign.post.store');
-                    });
-
-                    Route::prefix('departments')->name('departments.')->group(function() {
-                        Route::get('/', 'DepartmentController@index')->name('list');
-                        Route::get('/new', 'DepartmentController@new')->name('new');
-                        Route::post('/store', 'DepartmentController@store')->name('post.store');
-                    });
-
                     Route::prefix('users')->name('users.')->group(function() {
                         Route::get('/', 'UserController@index')->name('list');
                         Route::get('/new', 'UserController@new')->name('new');

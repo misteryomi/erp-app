@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('tickets.admin.layouts.menu')
       <div class="row">
           <div class="col-12 pt-5 pb-4">
             <h4>All Vendors</h4>
@@ -168,7 +169,7 @@
 
     $(document).ready(function() {
 
-      $('.select2').select2();
+    //   $('.select2').select2();
 
         //fetch depts
         $.get("{{ route('api.departments.list') }}", (res) => {

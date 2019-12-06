@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Tickets\Category;
-use App\Models\Tickets\DepartmentUnit;
+use App\Models\DepartmentUnit;
 use App\Models\Department;
 
 class CategoryController extends Controller

@@ -178,7 +178,7 @@
                 formObj[item.name] = item.value
             });
 
-            $.post("{{ route('tickets.admin.units.post.update', ['unit_id' => $unit->id]) }}", formData)
+            $.post("{{ route('admin.units.post.update', ['unit_id' => $unit->id]) }}", formData)
             .done((res) => {
                 alert(`Unit updated successfully! . Click OK to continue`);
                 window.location.reload();
@@ -205,7 +205,7 @@
                 formObj[item.name] = item.value
             });
 
-            $.post("{{ route('tickets.admin.units.assign.post.store') }}", formData)
+            $.post("{{ route('admin.units.assign.post.store') }}", formData)
             .done((res) => {
                 alert(`Staff successfully assigned as vendor! . Click OK to continue`);
                 window.location.reload();

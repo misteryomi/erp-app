@@ -23,18 +23,30 @@ class UserController extends Controller
 
         if(!$user) $user = $this->user;
 
-        return view('profiles.show', compact('user'));
+        $user_details = $user->profile();
+
+        return view('profiles.show', compact('user', 'user_details'));
     }
 
-    public function list() {
-        $users = $this->user->paginate(21);
+    public function list(Request $request) {
+
+        $limit = 21;
+        $users = $this->user->paginate($limit);
+
+        if($request->has('q')) {
+            $users = $this->filterResult($request->q)->paginate($limit);
+        }
 
         return view('profiles.list', compact('users'));
     }
 
 
     public function edit() {
-        return view('profiles.edit');
+        $user = $this->user;
+
+        $user_details = $user->profile('all');
+
+        return view('profiles.edit', compact('user', 'user_details'));
     }
 
     public function updatePassword() {
@@ -70,7 +82,36 @@ class UserController extends Controller
         ]);
 
         return redirect()->back()->withMessage('Profile picture updated successfully!');
-
     }
 
+
+    public function update(Request $request)
+    {
+
+        $requestData = $request->all();
+        $userData = $request->only(['username', 'password', 'date_registered', 'name', 'level', 'sub_unit', 'designation', 'dob', 'sex']);
+        $userData['name'] = $request->first_name .' '. $request->last_name;
+
+        $user = $this->user->update($userData);
+
+        $userDetailsData = \array_diff($requestData, $userData, $request->only(['first_name', 'last_name', '_token']));
+
+        $user->details()->update($userDetailsData);
+
+        return redirect()->back()->withMessage('Profile fields updated successfully!');
+    }
+
+
+    private function filterResult($q) {
+
+        $filter = (new User)->query();
+
+        $filter->where(function($query) use ($q) {
+                    $query->where('username', 'LIKE', "%$q%")
+                          ->orWhere('name', 'LIKE', "%$q%");
+                        //   ->orWhereHas('department') - But this is later on sha
+                });
+
+        return $filter;
+    }
 }

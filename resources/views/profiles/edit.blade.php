@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="header-body">
             <div class="pt-2 mb-3 text-light">
-                <h1 class="text-light">Edit Profiling</h1>
+                <h1 class="text-light">Edit Profile</h1>
             </div>
         </div>
     </div>
@@ -43,6 +43,8 @@
                     </div>
                 </div>
             </div>
+
+            @include('profiles.profile')
         </div>
     </div>
 @endsection

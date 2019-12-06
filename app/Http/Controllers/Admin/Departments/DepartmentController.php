@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tickets\Admin;
+namespace App\Http\Controllers\Admin\Departments;
 
 use App\Http\Requests\DepartmentRequest;
 use App\Http\Controllers\Controller;
@@ -18,10 +18,10 @@ class DepartmentController extends Controller
         $departments = $this->department->orderBy('name')->paginate(15);
         $vendors = \App\Models\Tickets\TicketVendor::all();
 
-        return view('tickets.admin.departments.list', compact('departments', 'vendors'));
+        return view('admin.departments.list', compact('departments', 'vendors'));
     }
 
-    public function store(DepartmentRequest $request) { 
+    public function store(DepartmentRequest $request) {
 
         $department = $this->department->create($request->except('_token'));
 
