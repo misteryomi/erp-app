@@ -20,6 +20,10 @@ Route::get('/register', 'AuthController@register')->name('register');
 Route::post('/register', 'AuthController@postRegister')->name('post.register');
 Route::get('/logout', 'AuthController@logout')->name('logout');
 
+Route::get('/forgot-password/{token?}', 'AuthController@forgotPassword')->name('forgot-password');
+Route::post('/forgot-password', 'AuthController@postForgotPassword')->name('post.forgot-password');
+Route::post('/reset-password', 'AuthController@storePassword')->name('store-password');
+
 Route::middleware('auth')->group(function() use ($sub_routes) {
     Route::get('/', 'DashboardController@index')->name('home');
 

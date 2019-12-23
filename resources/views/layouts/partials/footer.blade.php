@@ -28,6 +28,21 @@
 
           $('.datepicker').datepicker();
 
+
+          $('#password-container').click(function(){
+              let pwdField =  $('input#password');
+              let attr = pwdField.attr('type');
+              let toggler = $('.toggle-password');
+
+              if(attr == 'password') {
+                pwdField.attr('type', 'text');
+                toggler.html('<i class="fa fa-eye"></i>')
+              } else {
+                pwdField.attr('type', 'password');
+                toggler.html('<i class="fa fa-eye-slash"></i>')
+              }
+          });
+
     });
 
 

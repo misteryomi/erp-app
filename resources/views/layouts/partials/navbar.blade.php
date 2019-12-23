@@ -40,7 +40,7 @@
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="{{ route('profile.edit') }}" class="dropdown-item">
+              <a href="{{ route('profile.edit', ['user' => auth()->user()->username]) }}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Profile Settings</span>
               </a>

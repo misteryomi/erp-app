@@ -1,5 +1,5 @@
 <div class="py-5">
-    <form action="{{ route('profile.update') }}" method="POST">
+    <form action="{{ route('profile.update', ['user' => $user->username]) }}" method="POST">
     @csrf
     <div class="row">
         <div class="form-group col-md-6">

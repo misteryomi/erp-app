@@ -31,7 +31,7 @@ $flutterwaves_count = Flutterwafe::whereNotNull('life_token')->where('approval',
 
 
 @if(($user_permission->staff_department === 'recovery') || ($user_permission->staff_department === 'operations') || ($user_permission->staff_department === 'cad')  || ($user_permission->staff_department === 'cap') || ($user_permission->staff_permission === 'set_mandate') || ($user_permission->staff_department === 'it') )
-@if ($user_permission->staff_permission === 'mandate_inputter') 
+@if ($user_permission->staff_permission === 'mandate_inputter')
 <li id="xprofile-personal-li"><a id="user-xprofile" href="{{route('tokenize.index')}}">Pending Tokenization</a></li>
 <li id="xprofile-personal-li"><a id="user-xprofile" href="{{route('tokenize.index-completed')}}"> Completed Tokenization</a></li>
 @endif
@@ -51,7 +51,7 @@ $flutterwaves_count = Flutterwafe::whereNotNull('life_token')->where('approval',
 
 <li id="questions-personal-li"><a id="user-friends" href="{{route('flutterwavetransaction.token_payment')}}"> Income </a></li>
 
-@if ($user_permission->staff_permission === 'mandate_authorizer') 
+@if ($user_permission->staff_permission === 'mandate_authorizer')
 <li id="questions-personal-li"><a id="user-friends" href="{{route('tokenize.authorizer')}}"> Authorizer (<strong style="color: red">{{ $flutterwaves_count }}</strong>) </a></li>
 @endif
 <li id="questions-personal-li"><a id="user-friends" href="{{route('card_mandate.reports')}}"> Report </a></li>
@@ -104,7 +104,7 @@ return $number. $ends[$number % 10];
 
 
 <style type="text/css">
-	
+
 	#content-container a {
     color: #3e0e0e!important;
 }
@@ -268,7 +268,7 @@ ol, ul {
 
 .show-calendar{
 display: inline-flex !important;
-   
+
 }
 .range_inputs{
 	display: none;
@@ -617,12 +617,12 @@ display: inline-flex !important;
 <style type="text/css">
 #featuredbox{
 
-    display: none!important; 
+    display: none!important;
     visibility: hidden!important;
 }
 
 .modal-backdrop{
-  display: none !important; 
+  display: none !important;
 }
 </style>
 

@@ -12,6 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Models\Tickets\TicketsUser;
 use App\Models\Exceptions\ExceptionUser;
 use Illuminate\Support\Carbon;
+use App\ResetPassword;
 
 class User extends Authenticatable
 {
@@ -89,6 +90,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Leave');
     }
 
+    public function passwordReset() {
+        return $this->hasOne(ResetPassword::class, 'email', 'email');
+    }
+
 
     /**
      * Returns loans requested by by this user
@@ -106,8 +111,8 @@ class User extends Authenticatable
     }
 
 
-    public function setUserNicenameAttribute($value) {
-        $this->attributes['username'] = $value;
+    public function getUserNicenameAttribute($value) {
+        return $this->username;
     }
 
     public function setPasswordAttribute($value) {
@@ -123,16 +128,28 @@ class User extends Authenticatable
     }
 
     public function getDobAttribute($value) {
-        return Carbon::parse($value)->toFormattedDateString();
+        return !is_null($value) ? Carbon::parse($value)->toFormattedDateString() : '';
     }
 
-    public function upcomingBirthdays() {
+    public function getUserEmailAttribute() {
+        return $this->email;
+    }
+
+
+    /**
+     * Retrieve upcoming birthdays for the month
+     */
+    public function upcomingBirthdays($limit = 5) {
         $now = Carbon::now();
         $currentMonth = $now->format('m');
         $currentDay = $now->format('d');
 
-        return $this->whereMonth('dob', $currentMonth)->whereDay('dob', '>=', $currentDay)->orderBy('dob')->take(5)->get();
+        return $this->whereMonth('dob', $currentMonth)->whereDay('dob', '>=', $currentDay)->orderBy('dob')->take($limit)->get();
     }
 
 
+    public function isBirthday() {
+
+        return $this->dob != '' ? (Carbon::parse($this->dob)->format('d-m-Y') == Carbon::now()->format('d-m-Y')) : false;
+    }
 }

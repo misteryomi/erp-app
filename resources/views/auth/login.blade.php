@@ -25,12 +25,13 @@
                     </div>
                     <div class="form-group">
                     <label><small>Password</small></label>
-                      <div class="input-group input-group-alternative">
+                      <div class="input-group input-group-alternative" id="password-container">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                         </div>
-                        <input class="form-control" name="password" placeholder="Password" type="password">
-                      </div>
+                        <input class="form-control" name="password" id="password" placeholder="Password" type="password">
+                        <span class="toggle-password"><i class="fa fa-eye-slash"></i></span>
+                    </div>
                     </div>
                     <div class="custom-control custom-control-alternative custom-checkbox">
                       <input class="custom-control-input" name="remember-me" id=" customCheckLogin" type="checkbox">
@@ -44,7 +45,7 @@
                   </form>
                   <hr/>
                   <div class="text-center mt-4">
-                    <a href="#"><small><strong>Forgot password? Retrieve your password</strong></small></a><br/>
+                    <a href="{{ route('forgot-password') }}"><small><strong>Forgot password? Retrieve your password</strong></small></a><br/>
                     <a href="{{ route('register') }}"><small><strong>New on IRS? Create new account</strong></small></a>
                   </div>
                 </div>

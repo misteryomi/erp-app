@@ -79,8 +79,11 @@
                                    <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
                                 </h4>
                                 <span class="text-success">●</span>
-                                <small>{{ $user->dob }}</small>
+                                <small>{{ $user->dob }}</small><br/>
                                 </div>
+                                @if($user->isBirthday())
+                                <span class="badge badge-warning"><i class="fa fa-lg fa-birthday-cake"></i> We at Primera wish you a Happy Birthday! </span>
+                                @endif
                             </div>
                         </li>
                         @endforeach

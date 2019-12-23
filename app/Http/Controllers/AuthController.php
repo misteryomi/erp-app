@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ResetPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
@@ -9,6 +10,7 @@ use Carbon\Carbon;
 use Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use MikeMcLin\WpPassword\Facades\WpPassword;
 
 
@@ -81,6 +83,61 @@ class AuthController extends Controller
     }
 
 
+
+    public function logout() {
+
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
+
+
+    public function forgotPassword(ResetPassword $token = null) {
+
+        if($token) {
+            //Check if token has expired too tho...
+            return view('auth.reset-password', compact('token'));
+        }
+
+        return view('auth.forgot-password');
+    }
+
+    public function postForgotPassword(Request $request) {
+        $user = $this->user->where('email', $request->username)->orWhere('username', $request->username)->first();
+
+
+        if (!$user) {
+            return redirect()->back()->withError('User account does not exist. Please confirm your details and try again');
+        }
+
+        $token = Str::random(40);
+        $user->passwordReset()->create(['token' => $token]);
+
+        return redirect()->back()->withMessage('A passsword reset link has been sent to your email address. Please check your mail to continue');
+    }
+
+
+
+    public function storePassword(Request $request) {
+        $request->validate([
+            'email' => 'required|exists:users',
+            'password' => 'required|confirmed',
+        ]);
+
+        $user = $this->user->where('email', $request->email)->first();
+
+
+        $user->update([
+            'password' => $request->password
+        ]);
+
+        //Delete all tokens for that user
+        $user->passwordReset()->delete();
+
+        return redirect()->route('login')->withMessage('Password updated successfully! Please login to continue');
+    }
+
+
     /**
      * Attempt to log user in with Wordpress password
      */
@@ -93,10 +150,4 @@ class AuthController extends Controller
     }
 
 
-    public function logout() {
-
-        Auth::logout();
-
-        return redirect()->route('login');
-    }
 }

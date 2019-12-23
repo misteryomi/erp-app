@@ -41,12 +41,14 @@ class UserController extends Controller
     }
 
 
-    public function edit() {
-        $user = $this->user;
+    public function edit(User $user) {
 
-        $user_details = $user->profile('all');
+        if($this->checkPriviledge('edit-user', $user)) {
+            $user_details = $user->profile('all');
 
-        return view('profiles.edit', compact('user', 'user_details'));
+            return view('profiles.edit', compact('user', 'user_details'));
+        }
+
     }
 
     public function updatePassword() {
@@ -114,4 +116,21 @@ class UserController extends Controller
 
         return $filter;
     }
+
+
+    public function manageProfiles() {
+        $staff = $this->user->all();
+
+        return view('profiles.index', compact('staff'));
+    }
+
+
+    private function checkPriviledge($priviledge, $user) {
+        if($this->user->can($priviledge) || $this->user->id == $user->id) {
+            return true;
+        }
+
+        abort(403, 'You do not have the priviledge to perform this action');
+    }
+
 }
