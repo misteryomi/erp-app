@@ -15,15 +15,22 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <form action="?search" class="form-inline">
+                        <label class="sr-only" for="inlineFormInputName2">Name</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="q" placeholder="Enter staff name or username" />
 
-                    <form action="?search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="q" placeholder="Enter staff name or username" />
+                        <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                            <select name="department" class="form-control">
+                                <option value="">All departments</option>
+                                @foreach($departments as $department)
+                                    <option>{{ $department->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
-                    </form>
+
+                        <button type="submit" class="btn btn-primary mb-2">Search</button>
+                      </form>
 
                 </div>
             </div>
@@ -31,10 +38,14 @@
     </div>
 
     <div class="row">
+        @if($users->count() > 0)
             @foreach($users as $user)
                 @include('profiles.profile')
             </div>
             @endforeach
+        @else
+            <p class="text-center">No record found</p>
+        @endif
     </div>
 
     <div class="irs_pagination">

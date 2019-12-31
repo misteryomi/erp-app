@@ -23,7 +23,7 @@ class TicketsController extends Controller
         $this->status = $status;
 
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::user();    
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -81,7 +81,7 @@ class TicketsController extends Controller
         //If user is creating on behalf of someone else, Assign ticket to self. But ticket would be pending until approved. Once approved. Set ticket to open.
 
         if($is_on_behalf) {
-            $ticket->assignTicket($this->user->id, $request->is_on_behalf);            
+            $ticket->assignTicket($this->user->id, $request->is_on_behalf);
         } else {
             $ticket->assignTicketToAvailableStaff();
         }
@@ -89,10 +89,10 @@ class TicketsController extends Controller
 
 
         return response([
-                            'status' => true, 
-                            'message' => "Ticket successfully created! Your ticket ID is #$ticket->ticket_id", 
+                            'status' => true,
+                            'message' => "Ticket successfully created! Your ticket ID is #$ticket->ticket_id",
                             'data' =>  new TicketResource($ticket),
-                            'redirectsTo' => route('tickets.show', ['ticket' => $ticket->ticket_id]), 
+                            'redirectsTo' => route('tickets.show', ['ticket' => $ticket->ticket_id]),
                             ]);
     }
 
@@ -126,7 +126,7 @@ class TicketsController extends Controller
             case $count > 0:
                 $tickets = $this->ticket->take($count)->get();
                 break;
-            
+
             default:
                 $tickets = $this->ticket->paginate(20);
                 break;
@@ -136,7 +136,7 @@ class TicketsController extends Controller
     }
 
 
-    /** 
+    /**
      * Process reassignment of assigned pending tickets to another staff
      */
     public function reassignPendingTickets() {
@@ -153,7 +153,7 @@ class TicketsController extends Controller
         if($this->user->id != $ticket->user_id || $ticket->is_approved) {
             return redirect()->back()->withMessage('Sorry, you can only approve your own unapproved tickets')->withAlertClass('alert-danger');
         }
-        
+
         $ticket->update(['is_approved' => 1]);
 
         return redirect()->back()->withMessage('Ticket approved successfully!')->withAlertClass('alert-success');
@@ -170,7 +170,7 @@ class TicketsController extends Controller
         $status_id = $this->status->findStatus('Solved');
         $ticket->update(['status_id' => $status_id, 'solved_at' => \Carbon\Carbon::now(), 'solved_by' => 'vendor']);
 
-        return redirect()->route('vendor.tickets.show', ['ticket_id' => $ticket->ticket_id])->withMessage('Ticket successfully updated!')->withAlertClass('alert-success');
+        return redirect()->route('vendor.tickets.show', ['ticket' => $ticket->ticket_id])->withMessage('Ticket successfully updated!')->withAlertClass('alert-success');
 
     }
 

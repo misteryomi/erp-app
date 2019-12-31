@@ -7,6 +7,7 @@
                 <div class="card-body">
                 <div class="item-wrapper">
                     <form id="create-ticket" action="#" method="POST" enctype="multipart/form-data">
+                        @csrf
                     <div class="form-group row">
                         <div class="col-md-4">
                             <label for="department">Department</label>

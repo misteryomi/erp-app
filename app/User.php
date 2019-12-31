@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Department;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -13,6 +14,7 @@ use App\Models\Tickets\TicketsUser;
 use App\Models\Exceptions\ExceptionUser;
 use Illuminate\Support\Carbon;
 use App\ResetPassword;
+use App\Notification;
 
 class User extends Authenticatable
 {
@@ -89,6 +91,11 @@ class User extends Authenticatable
     public function leaves() {
         return $this->hasMany('App\Leave');
     }
+
+    public function notifications() {
+        return $this->hasMany(Notification::class, 'notifiable_id');
+    }
+
 
     public function passwordReset() {
         return $this->hasOne(ResetPassword::class, 'email', 'email');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use \App\User;
 use Illuminate\Support\Facades\Auth;
@@ -32,12 +33,13 @@ class UserController extends Controller
 
         $limit = 21;
         $users = $this->user->paginate($limit);
+        $departments = Department::all();
 
         if($request->has('q')) {
-            $users = $this->filterResult($request->q)->paginate($limit);
+            $users = $this->filterResult($request->q, $request->department)->paginate($limit);
         }
 
-        return view('profiles.list', compact('users'));
+        return view('profiles.list', compact('users', 'departments'));
     }
 
 
@@ -64,6 +66,7 @@ class UserController extends Controller
         $this->user->update([
             'password' => Hash::make($request->password)
         ]);
+        activity()->log('Changed Password');
 
         return redirect()->back()->withMessage('Password updated successfully!');
     }
@@ -83,6 +86,8 @@ class UserController extends Controller
             'avatar' => $path,
         ]);
 
+        activity()->log('Changed Profile Picture');
+
         return redirect()->back()->withMessage('Profile picture updated successfully!');
     }
 
@@ -100,19 +105,27 @@ class UserController extends Controller
 
         $user->details()->update($userDetailsData);
 
+        activity()->log('Updated profile details');
+
         return redirect()->back()->withMessage('Profile fields updated successfully!');
     }
 
 
-    private function filterResult($q) {
+    private function filterResult($q, $department = null) {
 
         $filter = (new User)->query();
 
         $filter->where(function($query) use ($q) {
                     $query->where('username', 'LIKE', "%$q%")
                           ->orWhere('name', 'LIKE', "%$q%");
-                        //   ->orWhereHas('department') - But this is later on sha
                 });
+
+        if($department) {
+            $filter->whereHas('details.department', function($query) use($department) {
+                $query->where('name', 'like', "%$department%");
+            });
+        }
+
 
         return $filter;
     }

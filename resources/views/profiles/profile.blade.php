@@ -11,7 +11,11 @@
             <h5 class="h3 title">
                 <a href="{{ route('profile.show', ['user' => $user->username ]) }}"><span class="d-block mb-1">{{ $user->name }}</span></a>
                 <small class="h4 font-weight-bold text-muted">{{ $user->designation }}</small><br/>
-                <small class="h4 font-weight-light text-muted">{{ $user->department }}</small>
+                <small class="h4 font-weight-light text-muted">{{ $user->department }}</small><hr/>
+                <small class="text-muted"><a href="mailto:{{ $user->email}}"> {{ $user->email }}</a></small><br/>
+                @if($user->details)
+                <small class="text-muted"><a href="tel:{{ $user->details->phone }}">{{ $user->details->phone }}</a></small>
+                @endif
             </h5>
         </div>
     </div>

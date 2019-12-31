@@ -38,7 +38,7 @@ class TicketConversation extends Model
     public function getAttachmentAttribute($value) {
         if(!is_null($value)) {
             return config('storage.url').Storage::url($value);
-        }        
+        }
         return null;
     }
 
@@ -66,9 +66,11 @@ class TicketConversation extends Model
     //Send mail
     public function sendMail($receiver) {
         $conversation = $this;
-        
-        Mail::to($receiver->email)->queue(new TicketResponse($conversation, $receiver));    
-        
+
+        (new App\Notification)->queue("$conversation->user->name has responded to the ticket #$conversation->ticket->ticket_id", route('tickets.show', ['ticket_id' => $conversation->ticket->id]), $receiver->id);
+
+        Mail::to($receiver->email)->queue(new TicketResponse($conversation, $receiver));
+
     }
-    
+
 }

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use MikeMcLin\WpPassword\Facades\WpPassword;
+use App\Rules\PrimeraDomain;
 
 
 class AuthController extends Controller
@@ -37,7 +38,7 @@ class AuthController extends Controller
     {
         $validation = Validator::make($request->all(), [
                             'username' => 'required|unique:users',
-                            'email' => 'required|email|unique:users',
+                            'email' => ['required', 'email', 'unique:users', new PrimeraDomain],
                             'password' => 'required|confirmed'
                         ]);
 
@@ -78,6 +79,7 @@ class AuthController extends Controller
         if(!Auth::attempt(['email' => $user->email, 'password' => $request->password], $request->remember_me)){
             return redirect()->route('login')->withError('Invalid username or password');
         }
+
 
         return redirect()->intended(route('home'));
     }

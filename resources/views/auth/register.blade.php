@@ -213,6 +213,9 @@
                     </div>
                 </div>
 
+                <div class="g-recaptcha" data-sitekey="6LerW8oUAAAAAIUnhm9cDz2qQrDJZqfYRcum9ays"></div>
+                <br/>
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-block btn-primary my-4">Create Account</button>
                 </div>
@@ -222,4 +225,14 @@
         </div>
       </div>
   </div>
+@endsection
+@section('scripts')
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+<script type="text/javascript">
+  var onloadCallback = function() {
+    console.log("grecaptcha is ready!");
+  };
+</script>
 @endsection

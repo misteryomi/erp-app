@@ -138,9 +138,13 @@ class Ticket extends Model
         //If ticket is created on behalf of the staff.
         if($is_on_behalf) {
             //->cc($ticket->assignedTo->unit->group_email)
+            (new \App\Notification)->queue('A new ticket has been created on your behalf', route('tickets.show', ['ticket' => $ticket->ticket_id]), $ticket->user->id);
+
             Mail::to($ticket->user->email)->queue(new TicketCreatedOnBehalf($this));
+
         } else {
             if($this->assignedTo) {
+                (new \App\Notification)->queue('A new ticket has been assigned to you', route('tickets.show', ['ticket' => $ticket->ticket_id]), $this->assignedTo->id);
                 Mail::to($ticket->user->email)->queue(new TicketAssigned($this));
             }
         }

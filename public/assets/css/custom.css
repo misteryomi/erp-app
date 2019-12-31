@@ -35,6 +35,11 @@
     height: 50;
     cursor: pointer;
 }
+.irs_pagination {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 /* #password-container .toggle-password i{
     padding-top: 140;
     background-color: #172b4d;
