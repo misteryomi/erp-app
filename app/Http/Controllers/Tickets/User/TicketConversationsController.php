@@ -23,9 +23,9 @@ class TicketConversationsController extends Controller
     function __construct(TicketConversation $conversation, Status $status) {
         $this->conversation = $conversation;
         $this->status = $status;
-        
+
         $this->middleware(function ($request, $next) {
-            $this->user = Auth::user();    
+            $this->user = Auth::user();
             return $next($request);
         });
     }
@@ -47,16 +47,16 @@ class TicketConversationsController extends Controller
 
         // if(!$ticket->is_assigned) {
         //     return response([
-        //         'status' => false, 
-        //         'message' => "Sorry, you cannot respond to an unassigned ticket", 
-        //         ], 403);    
+        //         'status' => false,
+        //         'message' => "Sorry, you cannot respond to an unassigned ticket",
+        //         ], 403);
         // }
 
         if(!$ticket->is_approved) {
             return response([
-                'status' => false, 
-                'message' => "Sorry, you cannot respond to an unapproved ticket", 
-                ], 403);    
+                'status' => false,
+                'message' => "Sorry, you cannot respond to an unapproved ticket",
+                ], 403);
         }
 
         $requestData = $request->except('attachment', 'solved');
@@ -76,7 +76,7 @@ class TicketConversationsController extends Controller
 
         /**
          * process some updates on the status of the ticket
-         * 
+         *
          */
         //If the assigned staff has once responded to this ticket and user responds, it is an open ticket, not pending.
         $userStatus = $ticket->conversations()->where('sender_id', $ticket->assignedTo->id)->count() > 0 ? 'Open' : 'Pending';
@@ -84,16 +84,16 @@ class TicketConversationsController extends Controller
         if($request->has('solved')) {
             $status = 'Solved';
         }
-        
+
         $status_id = $this->status->findStatus($status);
         $ticket->update(['status_id' => $status_id]);
         $message->sendMail($receiver);
-        
+
          return response([
-            'status' => true, 
-            'message' => "Ticket updated successfully!", 
+            'status' => true,
+            'message' => "Ticket updated successfully!",
             'data' =>  new TicketConversationResource($message),
-            'redirectsTo' => $redirectsTo, 
+            'redirectsTo' => $redirectsTo,
             ]);
 
     }

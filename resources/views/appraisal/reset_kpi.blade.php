@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.app')
 
 @section('page_title') Spool Appraisal Records @endsection
         <!-- BEGIN CONTENT -->
@@ -14,7 +14,7 @@
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
         <h1 class="page-title">
-            Appraisal 
+            Appraisal
         </h1>
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -35,7 +35,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <span>Adding new records for Appraisal</span> 
+                                    <span>Adding new records for Appraisal</span>
                                     <div class="card-header-right" style="padding:30px;">
                                         <a href="#back" id="btn-form-close" class="btn btn-lg red">
                                             <i class="icofont icofont-rounded-left"></i>
@@ -825,9 +825,9 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <select name = 'user_id' id="hr_id_add" class = 'form-control'>
-                                                                            @foreach($users as $key => $value) 
+                                                                            @foreach($users as $key => $value)
                                                                             <option value="{{$key}}">{{$value}}</option>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -837,9 +837,9 @@
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <select name = 'appraisal_year_id' id="hr_id_add" class = 'form-control'>
-                                                                            @foreach($appraisal_years as $key => $value) 
+                                                                            @foreach($appraisal_years as $key => $value)
                                                                             <option value="{{$key}}">{{$value}}</option>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>--}}
@@ -861,7 +861,7 @@
                                             <h2>
                                                 Editing appraisal
                                             </h2>
-                                            <span>Editing appraisal</span> 
+                                            <span>Editing appraisal</span>
                                             <div class="card-header-right" style="padding:30px;">
                                                 <a href="#back" id="btn-form-close" class="btn btn-lg red">
                                                     <i class="icofont icofont-rounded-left"></i>
@@ -1652,9 +1652,9 @@
                                                                             </div>
                                                                             <div class="col-sm-9">
                                                                                 <select name = 'user_id' id="hr_id_edit" class = 'form-control'>
-                                                                                    @foreach($users as $key => $value) 
+                                                                                    @foreach($users as $key => $value)
                                                                                     <option value="{{$key}}">{{$value}}</option>
-                                                                                    @endforeach 
+                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
                                                                         </div>
@@ -1664,9 +1664,9 @@
                                                                             </div>
                                                                             <div class="col-sm-9">
                                                                                 <select name = 'appraisal_year_id' id="hr_id_edit" class = 'form-control'>
-                                                                                    @foreach($appraisal_years as $key => $value) 
+                                                                                    @foreach($appraisal_years as $key => $value)
                                                                                     <option value="{{$key}}">{{$value}}</option>
-                                                                                    @endforeach 
+                                                                                    @endforeach
                                                                                 </select>
                                                                             </div>
                                                                         </div>--}}
@@ -1688,7 +1688,7 @@
                                                     <h2>
                                                         Appraisal
                                                     </h2>
-                                                    <span>Displaying Appraisal</span> 
+                                                    <span>Displaying Appraisal</span>
                                                     <button id="btn-form-create" class="btn btn-lg btn-success" style="margin:30px;" > Add new Appraisal </button>
                                                     <div class="card-header-right"> <i class="icofont icofont-rounded-down"></i> <i class="icofont icofont-refresh"></i> <i class="icofont icofont-close-circled"></i> </div>
                                                 </div>
@@ -1827,7 +1827,7 @@
 
 
 
-                                                                              
+
                                                                                 <th>Last Update</th>
                                                                             </tr>
                                                                             <input type="hidden" name="_token" value="FAoKt9NQHDIAz0lpuHOdHu6IeWveBXg4ZTA5ppyd">
@@ -2058,7 +2058,7 @@ if($grant_total_manager == 20){
                                                                                 <td>{!!$appraisal->updated_at->diffForHumans()!!} </td>
 
                                                                             </tr>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -2094,7 +2094,7 @@ if($grant_total_manager == 20){
                                         <!-- Page body start -->
                                         <!-- Page body end of content before includes of component-->
                                         <!-- Modal form to delete a form -->
-                                        @section('scripts') 
+                                        @section('scripts')
                                         <!-- sweet alert js -->
                                         <script src="http://irs.primera/assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
                                         <link href="http://irs.primera/assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
@@ -2382,7 +2382,7 @@ if($grant_total_manager == 20){
     // Show a post
     $(document).on('click', '.show-modal', function () {
         $('.modal-title').text('Show');
-        
+
         $('#showModal').modal('show');
     });
 
@@ -2411,12 +2411,12 @@ if($grant_total_manager == 20){
         });
     });
 </script>
-                                        @endsection @section('styles') 
+                                        @endsection @section('styles')
                                         <!-- sweet alert framework -->
                                         <link rel="stylesheet" type="text/css" href="http://irs.primera/bower_components/sweetalert/dist/sweetalert.css">
                                         <!-- animation nifty modal window effects css -->
                                         <link rel="stylesheet" type="text/css" href="http://irs.primera/assets/css/component.css">
-                                        @endsection 
+                                        @endsection
 
                                     </div>
                                 </div>

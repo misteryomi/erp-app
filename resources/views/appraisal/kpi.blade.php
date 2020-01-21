@@ -1,4 +1,4 @@
-@extends('layouts.frontend') @section('content') 
+@extends('layouts.app') @section('content')
 @section('page_title')Annual Appraisal KPI @endsection
 <!-- BEGIN CONTENT -->
 <?php
@@ -10,7 +10,7 @@ use App\User;
     <div class="page-content">
         <!-- BEGIN PAGE HEADER-->
         <h1 class="page-title">
-            Appraisal 
+            Appraisal
         </h1>
         <div class="page-bar">
             <ul class="page-breadcrumb">
@@ -33,7 +33,7 @@ use App\User;
                                     <h2>
                                         Add New Appraisal
                                     </h2>
-                                    <span>Adding new records for Appraisal</span> 
+                                    <span>Adding new records for Appraisal</span>
                                     <div class="card-header-right" style="padding:30px;">
                                         <a href="#back" id="btn-form-close" class="btn btn-lg red">
                                             <i class="icofont icofont-rounded-left"></i>
@@ -597,9 +597,9 @@ Supervisor...</option>
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <select name = 'user_id' id="hr_id_add" class = 'form-control'>
-                                                                            @foreach($users as $key => $value) 
+                                                                            @foreach($users as $key => $value)
                                                                             <option value="{{$key}}">{{$value}}</option>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -609,9 +609,9 @@ Supervisor...</option>
                                                                     </div>
                                                                     <div class="col-sm-9">
                                                                         <select name = 'appraisal_year_id' id="hr_id_add" class = 'form-control'>
-                                                                            @foreach($appraisal_years as $key => $value) 
+                                                                            @foreach($appraisal_years as $key => $value)
                                                                             <option value="{{$key}}">{{$value}}</option>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </select>
                                                                     </div>
                                                                 </div>--}}
@@ -633,7 +633,7 @@ Supervisor...</option>
                                             <h2>
                                                 Editing appraisal KPI
                                             </h2>
-                                            <span>Editing appraisal</span> 
+                                            <span>Editing appraisal</span>
                                             <div class="card-header-right" style="padding:30px;">
                                                 <a href="#back" id="btn-form-close" class="btn btn-lg red">
                                                     <i class="icofont icofont-rounded-left"></i>
@@ -1203,7 +1203,7 @@ Supervisor...</option>
                                                     <h2>
                                                         Appraisal
                                                     </h2>
-                                                    <span>Displaying Appraisal</span> 
+                                                    <span>Displaying Appraisal</span>
                                                     <button id="btn-form-create" class="btn btn-lg btn-success" style="margin:30px;" > Add new Appraisal </button>
                                                     <div class="card-header-right"> <i class="icofont icofont-rounded-down"></i> <i class="icofont icofont-refresh"></i> <i class="icofont icofont-close-circled"></i> </div>
                                                 </div>
@@ -1233,9 +1233,9 @@ Supervisor...</option>
                                                                             <input type="hidden" name="_token" value="FAoKt9NQHDIAz0lpuHOdHu6IeWveBXg4ZTA5ppyd">
                                                                         </thead>
                                                                         <tbody id="PostContent">
-                                                                            @foreach($appraisals as $appraisal) 
+                                                                            @foreach($appraisals as $appraisal)
                                                                             <tr class="item{!!$appraisal->
-                                                                                id!!}" > 
+                                                                                id!!}" >
 
                                                                                 <td>{{User::find($appraisal->user_id)
                                                                                 ->name }} </td>
@@ -1258,7 +1258,7 @@ Supervisor...</option>
                                                                                     <button class="delete-modal btn btn-danger btn-sm" data-id="{!!$appraisal->id!!}"> Delete </button>
                                                                                 </td>
                                                                             </tr>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -1295,7 +1295,7 @@ Supervisor...</option>
                                         <!-- Page body start -->
                                         <!-- Page body end of content before includes of component-->
                                         <!-- Modal form to delete a form -->
-                                        @section('scripts') 
+                                        @section('scripts')
                                         <!-- sweet alert js -->
                                         <script src="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
                                         <link href="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet" type="text/css" />
@@ -1588,7 +1588,7 @@ Supervisor...</option>
     // Show a post
     $(document).on('click', '.show-modal', function () {
         $('.modal-title').text('Show');
-        
+
         $('#showModal').modal('show');
     });
 
@@ -1622,7 +1622,7 @@ Supervisor...</option>
                                         <link rel="stylesheet" type="text/css" href="{{ asset('bower_components/sweetalert/dist/sweetalert.css') }}">
                                         <!-- animation nifty modal window effects css -->
                                         <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/component.css') }}">
-                                        @endsection 
+                                        @endsection
 
                                     </div>
                                 </div>

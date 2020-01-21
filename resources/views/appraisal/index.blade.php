@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.app')
 @section('page_title')Appraisal Dashboard @endsection
 @section('content')
 

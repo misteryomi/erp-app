@@ -1,11 +1,11 @@
-@extends('layouts.frontend_kpi')
+@extends('layouts.app_kpi')
 @section('page_title')Annual Appraisal @endsection
 
 @section('content')
 
 <?php
     use App\User;
-    
+
     Auth()->user()->unreadNotifications->markAsRead();
     ?>
 
@@ -47,7 +47,7 @@
 <!-- <div class="m-heading-1 border-green m-bordered">
 <h3>Annual Appraisal and 2018 KEY PERFORMANCE INDICATORS
 (KPI'S)</h3>
- 
+
  </div> -->
  <div class="portlet light " id="form_wizard_1">
  <div class="portlet-title">
@@ -2046,7 +2046,7 @@ type="hidden" class="form-control">
  data: $("#submit_form").serialize(),
  success: function (data) {
  preventDefault();
- 
+
  if ((data.errors)) {
  setTimeout(function () {
  var errorsHtml= '';
@@ -2055,7 +2055,7 @@ type="hidden" class="form-control">
  });
  toastr.error( errorsHtml, 'Error:', {timeOut: 5000});
  }, 500);
- 
+
  if (data.errors.title) {
  $('.errorTitle').removeClass('hidden');
  $('.errorTitle').text(data.errors.title);
@@ -2067,7 +2067,7 @@ type="hidden" class="form-control">
  } else {
  swal("Success", 'Successfully Submitted', "success");
  }
- 
+
  };
  });
  });
@@ -2085,12 +2085,12 @@ $(function(){
                            var postData = $(this).serialize();
                            $.post(url, postData, function(dor){
                                   if (dor.result == 1){
-                                  
+
                                   $("#submit_form").trigger('reset'); //reset the form
-                                  
+
                                   swal("Success", dor.message, "success");
                                   theNotification(dor.message);
-                                  
+
                                   }else{
                                   swal("Error!", dor.message, "error");
                                   /*   //  swal({
@@ -2102,7 +2102,7 @@ $(function(){
                                    });*/
                                   }
                                   }, 'json');
-                           
+
                            });
   });
 
@@ -2130,9 +2130,9 @@ function theNotification(message) {
 
 
 {{--
-    
+
     <script type="text/javascript">
-    
+
     if(window.Notification && Notification.permission !== "denied") {
         Notification.requestPermission(function(status) {  // status is "granted", if accepted by user
                                        var n = new Notification('Title', {
@@ -2141,89 +2141,89 @@ function theNotification(message) {
                                                                 });
                                        });
     }
-    
+
     // Query selector
     var button = document.querySelector('#button');
-    
+
     // When the button is clicked
     button.addEventListener('click', function () {
-                            
+
                             // If notifications are granted show the notification
                             if (Notification && Notification.permission === "granted") {
                             theNotification();
                             }
-                            
+
                             // If they are not denied (i.e. default)
                             else if (Notification && Notification.permission !== "denied") {
-                            
+
                             // Request permission
                             Notification.requestPermission(function (status) {
-                                                           
+
                                                            // Change based on user's decision
                                                            if (Notification.permission !== status) {
                                                            Notification.permission = status;
                                                            }
-                                                           
+
                                                            // If it's granted show the notification
                                                            if (status === "granted") {
                                                            theNotification();
                                                            }
-                                                           
+
                                                            else {
                                                            // Back up if the user's browser doesn't support notifications
                                                            }
-                                                           
+
                                                            });
-                            
+
                             }
-                            
+
                             else {
                             // Back up if the user's browser doesn't support notifications
                             }
-                            
+
                             });
-    
-    
+
+
     window.addEventListener('load', function() {
-                            
+
                             function theNotification() {
-                            
+
                             var n = new Notification("I'm a notification!",  {
                                                      icon: 'http://www.inserthtml.com/demos/javascript/notification/icon.jpg',
                                                      tag: 'note',
                                                      body: 'Notification content...'
                                                      });
                             }
-                            
+
                             function timeOut() {
-                            
+
                             setTimeout(function() {
-                                       
+
                                        var a  = document.querySelectorAll('[data-fade]');
-                                       
+
                                        for(s = 0; s < a.length; ++s) {
-                                       
+
                                        a[s].remove();
-                                       
+
                                        }
-                                       
+
                                        running = false;
-                                       
+
                                        }, 300);
-                            
+
                             }
-                            
+
                             var running = false;
-                            
+
                             function fallbackNote() {
-                            
+
                             if(running === false) {
                             running = true;
-                            
+
                             var attr = document.createAttribute('data-fade');
                             var at = document.createAttribute('data-fade');
                             var not = document.querySelectorAll('.notification');
-                            
+
                             if(not !== null) {
                             for (i = 0; i < not.length; i++) {
                             if(!not[i].hasAttribute('data-fade')) {
@@ -2231,92 +2231,92 @@ function theNotification(message) {
                             }
                             }
                             }
-                            
+
                             var ne = document.createElement('div');
-                            
+
                             ne.className = 'notification';
-                            
+
                             ne.innerHTML = '<h2>I\'m a notification! </h2><div>Notification Content</div><div class="close">&#x2421;</div>';
-                            
+
                             var org = document.querySelector('#container');
-                            
+
                             document.body.insertBefore(ne, org);
-                            
+
                             setTimeout(function() {
                                        var a  = document.querySelectorAll('.notification');
-                                       
+
                                        for(s = 0; s < a.length; ++s) {
-                                       
+
                                        a[s].style.top = '60px';
-                                       
+
                                        a[s].onclick = function(e) {
-                                       
+
                                        if(!this.hasAttribute('data-fade')) {
                                        this.setAttributeNode(at);
                                        timeOut();
                                        }
                                        }
                                        }
-                                       
+
                                        }, 20);
-                            
+
                             timeOut();
-                            
+
                             }
                             }
-                            
+
                             // Query selector
                             var button = document.querySelector('#button');
-                            
+
                             // When the button is clicked
                             button.addEventListener('click', function () {
-                                                    
+
                                                     // If notifications are granted show the notification
                                                     if (Notification && Notification.permission === "granted") {
                                                     theNotification();
                                                     }
-                                                    
+
                                                     // If they are not denied (i.e. default)
                                                     else if (Notification && Notification.permission !== "denied") {
-                                                    
+
                                                     // Request permission
                                                     Notification.requestPermission(function (status) {
-                                                                                   
+
                                                                                    // Change based on user's decision
                                                                                    if (Notification.permission !== status) {
                                                                                    Notification.permission = status;
                                                                                    }
-                                                                                   
+
                                                                                    // If it's granted show the notification
                                                                                    if (status === "granted") {
                                                                                    theNotification();
                                                                                    }
-                                                                                   
+
                                                                                    else {
                                                                                    fallbackNote();
                                                                                    }
-                                                                                   
+
                                                                                    });
-                                                    
+
                                                     }
-                                                    
+
                                                     else {
                                                     fallbackNote();
                                                     }
-                                                    
+
                                                     });
-                            
-                            
+
+
                             // Query selector
                             var button2 = document.querySelector('#button2');
-                            
+
                             button2.addEventListener('click', function() {
-                                                     
+
                                                      fallbackNote();
-                                                     
+
                                                      });
-                            
-                            
+
+
                             });
     </script>
     --}}
@@ -2335,13 +2335,13 @@ function theNotification(message) {
                           success: function (data) {
                           $('.errorTitle').addClass('hidden');
                           $('.errorContent').addClass('hidden');
-                          
+
                           if ((data.errors)) {
                           setTimeout(function () {
                                      //  $('#addModal').modal('show');
                                      toastr.error('Error occurred trying to Add a Student_class', 'Error Alert', {timeOut: 5000});
                                      }, 500);
-                          
+
                           if (data.errors.title) {
                           $('.errorTitle').removeClass('hidden');
                           $('.errorTitle').text(data.errors.title);
@@ -2353,15 +2353,15 @@ function theNotification(message) {
                           } else {
                           toastr.success('Successfully Posted', 'Success Alert', {timeOut: 5000});
                           $('#PostContent').append("<tr class='item" + data.id + "'> <td>" + data.title + "</td>  <td>just now</td><td><button class='edit-modal btn btn-info btn-sm'  data-id='" + data.id + "'  data-title='" + data.title + "'   > Edit</button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "'>Delete</button></td></tr>");
-                          
+
                           //table.ajax.reload();   /// reloads the table
-                          
-                          
+
+
                           /* START Closing the form after successful post*/
                           // alert('Thanks');
                           $("#creator-form").hide();
                           //  $("form").trigger('reset'); //reset the form
-                          
+
                           var $window = $(window)
                           var windowSize = $window.width();
                           if (windowSize > 992) {
@@ -2370,24 +2370,24 @@ function theNotification(message) {
                                      });
                           }
                           else($('#table-content-display').show().removeClass('animated bounce'));
-                          
+
                           $('#table-content-display').show();
                           /*END Closing the form after successful post*/
-                          
-                          
-                          
+
+
+
                           }
                           },
                           });
                    });
-    
+
     </script>--}}
 
 
 {{--
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
-    
+
     --}}
 <link href="{{ asset('assets/pages/css/profile.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/apps/css/ticket.min.css') }}" rel="stylesheet" type="text/css" />

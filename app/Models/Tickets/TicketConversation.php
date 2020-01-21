@@ -67,8 +67,6 @@ class TicketConversation extends Model
     public function sendMail($receiver) {
         $conversation = $this;
 
-        (new App\Notification)->queue("$conversation->user->name has responded to the ticket #$conversation->ticket->ticket_id", route('tickets.show', ['ticket_id' => $conversation->ticket->id]), $receiver->id);
-
         Mail::to($receiver->email)->queue(new TicketResponse($conversation, $receiver));
 
     }

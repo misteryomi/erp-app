@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.app')
 @section('content')
 @section('page_title') Annual Appraisal @endsection
 @php
@@ -8,7 +8,7 @@
 require("assets/mpdf-master/mpdf.php");
 $mpdf=new mPDF('win-1252','A4','','',5,5,5,5,5,5);//A4 page in portrait for landscape add -L.
 //$mpdf->SetHeader('|'.$school_name.' '.$school_name2.' '.date('l jS \of F Y h:i:s A').'|');
-$mpdf->setFooter('©  '.$school_name.' '.$school_name2.' ( '.$school_website.' ) - powered by www.webguru.com.ng ');// Giving page number to your footer.
+$mpdf->setFooter('ï¿½  '.$school_name.' '.$school_name2.' ( '.$school_website.' ) - powered by www.webguru.com.ng ');// Giving page number to your footer.
 $mpdf->useOnlyCoreFonts = true;    // false is default
 $mpdf->SetDisplayMode('fullpage');
 // Buffer the following html with PHP so we can store it to a variable later

@@ -1,4 +1,4 @@
-@extends('layouts.frontend') @section('content')
+@extends('layouts.app') @section('content')
 @section('page_title')Annual Appraisal KPI @endsection
 <!-- BEGIN CONTENT -->
 <?php
@@ -1256,16 +1256,16 @@ id!!}" >
     <!-- sweet alert js -->
     <script src="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
     <link href="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet" type="text/css" />
-    
-    
-    
+
+
+
     <script type="text/javascript">
-    
+
     $(document).on('click', '#btn-form-create', function () {
                    // alert('Thanks');
                    $("#table-content-display").hide();
                    $("form").trigger('reset'); //reset the form
-                   
+
                    var $window = $(window)
                    var windowSize = $window.width();
                    if (windowSize > 992) {
@@ -1274,17 +1274,17 @@ id!!}" >
                               });
                    }
                    else($('#creator-form').show().removeClass('animated bounce'));
-                   
+
                    $('#creator-form').show();
                    });
-    
+
     $(document).on('click', '#btn-form-close', function () {
-                   
+
                    // alert('Thanks');
                    $("#creator-form").hide();
                    $("#edit-form").hide();
                    //  $("form").trigger('reset'); //reset the form
-                   
+
                    var $window = $(window)
                    var windowSize = $window.width();
                    if (windowSize > 992) {
@@ -1293,11 +1293,11 @@ id!!}" >
                               });
                    }
                    else($('#table-content-display').show().removeClass('animated bounce'));
-                   
+
                    $('#table-content-display').show();
                    });
-    
-    
+
+
     </script>
     <!-- AJAX CRUD operations -->
     <script type="text/javascript">
@@ -1314,7 +1314,7 @@ id!!}" >
                                  success: function (data) {
                                  $('.errorTitle').addClass('hidden');
                                  $('.errorContent').addClass('hidden');
-                                 
+
                                  if ((data.errors)) {
                                  setTimeout(function () {
                                             var errorsHtml= '';
@@ -1323,20 +1323,20 @@ id!!}" >
                                                    });
                                             toastr.error( errorsHtml, 'Error:', {timeOut: 5000});
                                             }, 500);
-                                 
-                                 
+
+
                                  } else {
                                  toastr.success('Successfully Posted', 'Success Alert', {timeOut: 5000});
                                  $('#PostContent').append("<tr class='item" + data.id + "'> <td>" + data.kpi1_field + "</td> <td>" + data.kpi1_target + "</td> <td>" + data.kpi1_weight + "</td> <td>" + data.kpi1_staff + "</td> <td>" + data.kpi1_manager + "</td> <td>" + data.kpi2_field + "</td> <td>" + data.kpi2_target + "</td> <td>" + data.kpi2_weight + "</td> <td>" + data.kpi2_staff + "</td> <td>" + data.kpi2_manager + "</td> <td>" + data.kpi3_field + "</td> <td>" + data.kpi3_target + "</td> <td>" + data.kpi3_weight + "</td> <td>" + data.kpi3_staff + "</td> <td>" + data.kpi3_manager + "</td> <td>" + data.kpi4_field + "</td> <td>" + data.kpi4_target + "</td> <td>" + data.kpi4_weight + "</td> <td>" + data.kpi4_staff + "</td> <td>" + data.kpi4_manager + "</td> <td>" + data.kpi5_field + "</td> <td>" + data.kpi5_target + "</td> <td>" + data.kpi5_weight + "</td> <td>" + data.kpi5_staff + "</td> <td>" + data.kpi5_manager + "</td> <td>" + data.kpi6_field + "</td> <td>" + data.kpi6_target + "</td> <td>" + data.kpi6_weight + "</td> <td>" + data.kpi6_staff + "</td> <td>" + data.kpi6_manager + "</td> <td>" + data.kpi7_field + "</td> <td>" + data.kpi7_target + "</td> <td>" + data.kpi7_weight + "</td> <td>" + data.kpi7_staff + "</td> <td>" + data.kpi7_manager + "</td> <td>" + data.kpi8_field + "</td> <td>" + data.kpi8_target + "</td> <td>" + data.kpi8_weight + "</td> <td>" + data.kpi8_staff + "</td> <td>" + data.kpi8_manager + "</td> <td>" + data.kpi_comment_staff + "</td> <td>" + data.kpi_comment_manager + "</td> <td>" + data.competency1_field + "</td> <td>" + data.competency1_target + "</td> <td>" + data.competency1_weight + "</td> <td>" + data.competency1_staff + "</td> <td>" + data.competency1_manager + "</td> <td>" + data.competency2_field + "</td> <td>" + data.competency2_target + "</td> <td>" + data.competency2_weight + "</td> <td>" + data.competency2_staff + "</td> <td>" + data.competency2_manager + "</td> <td>" + data.competency3_field + "</td> <td>" + data.competency3_target + "</td> <td>" + data.competency3_weight + "</td> <td>" + data.competency3_staff + "</td> <td>" + data.competency3_manager + "</td> <td>" + data.competency_comment_staff + "</td> <td>" + data.competency_comment_manager + "</td> <td>" + data.behavioural1_field + "</td> <td>" + data.behavioural1_target + "</td> <td>" + data.behavioural1_weight + "</td> <td>" + data.behavioural1_staff + "</td> <td>" + data.behavioural1_manager + "</td> <td>" + data.behavioural2_field + "</td> <td>" + data.behavioural2_target + "</td> <td>" + data.behavioural2_weight + "</td> <td>" + data.behavioural2_staff + "</td> <td>" + data.behavioural2_manager + "</td> <td>" + data.behavioural_comment_staff + "</td> <td>" + data.behavioural_comment_manager + "</td> <td>" + data.development1_field + "</td> <td>" + data.development1_target + "</td> <td>" + data.development1_weight + "</td> <td>" + data.development1_staff + "</td> <td>" + data.development1_manager + "</td> <td>" + data.development2_field + "</td> <td>" + data.development2_target + "</td> <td>" + data.development2_weight + "</td> <td>" + data.development2_staff + "</td> <td>" + data.development2_manager + "</td> <td>" + data.development_comment_staff + "</td> <td>" + data.development_comment_manager + "</td> <td>" + data.final_comment_staff + "</td> <td>" + data.final_comment_manager + "</td> <td>" + data.promoted_to + "</td> <td>" + data.promotion_reasons + "</td> <td>" + data.hr_actioned + "</td> <td>" + data.staff_actioned + "</td> <td>" + data.manager_actioned + "</td> <td>" + data.status + "</td> <td>" + data.completed + "</td> <td>" + data.user_id + "</td> <td>" + data.manager_id + "</td> <td>" + data.year + "</td> <td>" + data.hr_id + "</td>  <td>just now</td><td><button class='edit-modal btn btn-info btn-sm'  data-id='" + data.id + "'  data-kpi1_field='" + data.kpi1_field + "'   data-kpi1_target='" + data.kpi1_target + "'   data-kpi1_weight='" + data.kpi1_weight + "'   data-kpi1_staff='" + data.kpi1_staff + "'   data-kpi1_manager='" + data.kpi1_manager + "'   data-kpi2_field='" + data.kpi2_field + "'   data-kpi2_target='" + data.kpi2_target + "'   data-kpi2_weight='" + data.kpi2_weight + "'   data-kpi2_staff='" + data.kpi2_staff + "'   data-kpi2_manager='" + data.kpi2_manager + "'   data-kpi3_field='" + data.kpi3_field + "'   data-kpi3_target='" + data.kpi3_target + "'   data-kpi3_weight='" + data.kpi3_weight + "'   data-kpi3_staff='" + data.kpi3_staff + "'   data-kpi3_manager='" + data.kpi3_manager + "'   data-kpi4_field='" + data.kpi4_field + "'   data-kpi4_target='" + data.kpi4_target + "'   data-kpi4_weight='" + data.kpi4_weight + "'   data-kpi4_staff='" + data.kpi4_staff + "'   data-kpi4_manager='" + data.kpi4_manager + "'   data-kpi5_field='" + data.kpi5_field + "'   data-kpi5_target='" + data.kpi5_target + "'   data-kpi5_weight='" + data.kpi5_weight + "'   data-kpi5_staff='" + data.kpi5_staff + "'   data-kpi5_manager='" + data.kpi5_manager + "'   data-kpi6_field='" + data.kpi6_field + "'   data-kpi6_target='" + data.kpi6_target + "'   data-kpi6_weight='" + data.kpi6_weight + "'   data-kpi6_staff='" + data.kpi6_staff + "'   data-kpi6_manager='" + data.kpi6_manager + "'   data-kpi7_field='" + data.kpi7_field + "'   data-kpi7_target='" + data.kpi7_target + "'   data-kpi7_weight='" + data.kpi7_weight + "'   data-kpi7_staff='" + data.kpi7_staff + "'   data-kpi7_manager='" + data.kpi7_manager + "'   data-kpi8_field='" + data.kpi8_field + "'   data-kpi8_target='" + data.kpi8_target + "'   data-kpi8_weight='" + data.kpi8_weight + "'   data-kpi8_staff='" + data.kpi8_staff + "'   data-kpi8_manager='" + data.kpi8_manager + "'   data-kpi_comment_staff='" + data.kpi_comment_staff + "'   data-kpi_comment_manager='" + data.kpi_comment_manager + "'   data-competency1_field='" + data.competency1_field + "'   data-competency1_target='" + data.competency1_target + "'   data-competency1_weight='" + data.competency1_weight + "'   data-competency1_staff='" + data.competency1_staff + "'   data-competency1_manager='" + data.competency1_manager + "'   data-competency2_field='" + data.competency2_field + "'   data-competency2_target='" + data.competency2_target + "'   data-competency2_weight='" + data.competency2_weight + "'   data-competency2_staff='" + data.competency2_staff + "'   data-competency2_manager='" + data.competency2_manager + "'   data-competency3_field='" + data.competency3_field + "'   data-competency3_target='" + data.competency3_target + "'   data-competency3_weight='" + data.competency3_weight + "'   data-competency3_staff='" + data.competency3_staff + "'   data-competency3_manager='" + data.competency3_manager + "'   data-competency_comment_staff='" + data.competency_comment_staff + "'   data-competency_comment_manager='" + data.competency_comment_manager + "'   data-behavioural1_field='" + data.behavioural1_field + "'   data-behavioural1_target='" + data.behavioural1_target + "'   data-behavioural1_weight='" + data.behavioural1_weight + "'   data-behavioural1_staff='" + data.behavioural1_staff + "'   data-behavioural1_manager='" + data.behavioural1_manager + "'   data-behavioural2_field='" + data.behavioural2_field + "'   data-behavioural2_target='" + data.behavioural2_target + "'   data-behavioural2_weight='" + data.behavioural2_weight + "'   data-behavioural2_staff='" + data.behavioural2_staff + "'   data-behavioural2_manager='" + data.behavioural2_manager + "'   data-behavioural_comment_staff='" + data.behavioural_comment_staff + "'   data-behavioural_comment_manager='" + data.behavioural_comment_manager + "'   data-development1_field='" + data.development1_field + "'   data-development1_target='" + data.development1_target + "'   data-development1_weight='" + data.development1_weight + "'   data-development1_staff='" + data.development1_staff + "'   data-development1_manager='" + data.development1_manager + "'   data-development2_field='" + data.development2_field + "'   data-development2_target='" + data.development2_target + "'   data-development2_weight='" + data.development2_weight + "'   data-development2_staff='" + data.development2_staff + "'   data-development2_manager='" + data.development2_manager + "'   data-development_comment_staff='" + data.development_comment_staff + "'   data-development_comment_manager='" + data.development_comment_manager + "'   data-final_comment_staff='" + data.final_comment_staff + "'   data-final_comment_manager='" + data.final_comment_manager + "'   data-promoted_to='" + data.promoted_to + "'   data-promotion_reasons='" + data.promotion_reasons + "'   data-hr_actioned='" + data.hr_actioned + "'   data-staff_actioned='" + data.staff_actioned + "'   data-manager_actioned='" + data.manager_actioned + "'   data-status='" + data.status + "'   data-completed='" + data.completed + "'   data-user_id='" + data.user_id + "'   data-manager_id='" + data.manager_id + "'   data-year='" + data.year + "'   data-hr_id='" + data.hr_id + "'   > Edit</button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "'>Delete</button></td></tr>");
-                                 
+
                                  //table.ajax.reload();   /// reloads the table
-                                 
-                                 
+
+
                                  /* START Closing the form after successful post*/
                                  // alert('Thanks');
                                  $("#creator-form").hide();
                                  //  $("form").trigger('reset'); //reset the form
-                                 
+
                                  var $window = $(window)
                                  var windowSize = $window.width();
                                  if (windowSize > 992) {
@@ -1345,28 +1345,28 @@ id!!}" >
                                             });
                                  }
                                  else($('#table-content-display').show().removeClass('animated bounce'));
-                                 
+
                                  $('#table-content-display').show();
                                  /*END Closing the form after successful post*/
-                                 
-                                 
-                                 
+
+
+
                                  }
                                  },
                                  });
                           });
-    
+
     </script>
     <script>
-    
-    
+
+
     // Edit a post
     $(document).on('click', '.edit-modal', function () {
                    //////////////////////////////////////////////////////////////////
                    // alert('Thanks');
                    $("#table-content-display").hide();
                    $("form").trigger('reset'); //reset the form
-                   
+
                    var $window = $(window)
                    var windowSize = $window.width();
                    if (windowSize > 992) {
@@ -1375,10 +1375,10 @@ id!!}" >
                               });
                    }
                    else($('#edit-form').show().removeClass('animated bounce'));
-                   
+
                    $('#edit-form').show();
                    //////////////////////////////////////////////////////////////////
-                   
+
                    $('.modal-title').text('Edit');
                    $('#id_edit').val($(this).data('id'));
                    $('#kpi1_field_edit').val($(this).data('kpi1_field'));
@@ -1478,7 +1478,7 @@ id!!}" >
                    $('#year_edit').val($(this).data('year'));
                    $('#hr_id_edit').val($(this).data('hr_id'));
                    id = $('#id_edit').val();
-                   
+
                    // $('#editModal').modal('show');
                    });
     $('.modal-footer').on('click', '.edit', function () {
@@ -1489,7 +1489,7 @@ id!!}" >
                                  success: function (data) {
                                  $('.errorTitle').addClass('hidden');
                                  $('.errorContent').addClass('hidden');
-                                 
+
                                  if ((data.errors)) {
                                  setTimeout(function () {
                                             var errorsHtml= '';
@@ -1498,7 +1498,7 @@ id!!}" >
                                                    });
                                             toastr.error( errorsHtml, 'Error:', {timeOut: 5000});
                                             }, 500);
-                                 
+
                                  if (data.errors.title) {
                                  $('.errorTitle').removeClass('hidden');
                                  $('.errorTitle').text(data.errors.title);
@@ -1510,13 +1510,13 @@ id!!}" >
                                  } else {
                                  toastr.success('Successfully Updated', 'Success Alert', {timeOut: 5000});
                                  $('.item' + data.id).replaceWith("<tr class='item" + data.id + "'> <td>" + data.kpi1_field + "</td> <td>" + data.kpi1_target + "</td> <td>" + data.kpi1_weight + "</td> <td>" + data.kpi1_staff + "</td> <td>" + data.kpi1_manager + "</td> <td>" + data.kpi2_field + "</td> <td>" + data.kpi2_target + "</td> <td>" + data.kpi2_weight + "</td> <td>" + data.kpi2_staff + "</td> <td>" + data.kpi2_manager + "</td> <td>" + data.kpi3_field + "</td> <td>" + data.kpi3_target + "</td> <td>" + data.kpi3_weight + "</td> <td>" + data.kpi3_staff + "</td> <td>" + data.kpi3_manager + "</td> <td>" + data.kpi4_field + "</td> <td>" + data.kpi4_target + "</td> <td>" + data.kpi4_weight + "</td> <td>" + data.kpi4_staff + "</td> <td>" + data.kpi4_manager + "</td> <td>" + data.kpi5_field + "</td> <td>" + data.kpi5_target + "</td> <td>" + data.kpi5_weight + "</td> <td>" + data.kpi5_staff + "</td> <td>" + data.kpi5_manager + "</td> <td>" + data.kpi6_field + "</td> <td>" + data.kpi6_target + "</td> <td>" + data.kpi6_weight + "</td> <td>" + data.kpi6_staff + "</td> <td>" + data.kpi6_manager + "</td> <td>" + data.kpi7_field + "</td> <td>" + data.kpi7_target + "</td> <td>" + data.kpi7_weight + "</td> <td>" + data.kpi7_staff + "</td> <td>" + data.kpi7_manager + "</td> <td>" + data.kpi8_field + "</td> <td>" + data.kpi8_target + "</td> <td>" + data.kpi8_weight + "</td> <td>" + data.kpi8_staff + "</td> <td>" + data.kpi8_manager + "</td> <td>" + data.kpi_comment_staff + "</td> <td>" + data.kpi_comment_manager + "</td> <td>" + data.competency1_field + "</td> <td>" + data.competency1_target + "</td> <td>" + data.competency1_weight + "</td> <td>" + data.competency1_staff + "</td> <td>" + data.competency1_manager + "</td> <td>" + data.competency2_field + "</td> <td>" + data.competency2_target + "</td> <td>" + data.competency2_weight + "</td> <td>" + data.competency2_staff + "</td> <td>" + data.competency2_manager + "</td> <td>" + data.competency3_field + "</td> <td>" + data.competency3_target + "</td> <td>" + data.competency3_weight + "</td> <td>" + data.competency3_staff + "</td> <td>" + data.competency3_manager + "</td> <td>" + data.competency_comment_staff + "</td> <td>" + data.competency_comment_manager + "</td> <td>" + data.behavioural1_field + "</td> <td>" + data.behavioural1_target + "</td> <td>" + data.behavioural1_weight + "</td> <td>" + data.behavioural1_staff + "</td> <td>" + data.behavioural1_manager + "</td> <td>" + data.behavioural2_field + "</td> <td>" + data.behavioural2_target + "</td> <td>" + data.behavioural2_weight + "</td> <td>" + data.behavioural2_staff + "</td> <td>" + data.behavioural2_manager + "</td> <td>" + data.behavioural_comment_staff + "</td> <td>" + data.behavioural_comment_manager + "</td> <td>" + data.development1_field + "</td> <td>" + data.development1_target + "</td> <td>" + data.development1_weight + "</td> <td>" + data.development1_staff + "</td> <td>" + data.development1_manager + "</td> <td>" + data.development2_field + "</td> <td>" + data.development2_target + "</td> <td>" + data.development2_weight + "</td> <td>" + data.development2_staff + "</td> <td>" + data.development2_manager + "</td> <td>" + data.development_comment_staff + "</td> <td>" + data.development_comment_manager + "</td> <td>" + data.final_comment_staff + "</td> <td>" + data.final_comment_manager + "</td> <td>" + data.promoted_to + "</td> <td>" + data.promotion_reasons + "</td> <td>" + data.hr_actioned + "</td> <td>" + data.staff_actioned + "</td> <td>" + data.manager_actioned + "</td> <td>" + data.status + "</td> <td>" + data.completed + "</td> <td>" + data.user_id + "</td> <td>" + data.manager_id + "</td> <td>" + data.year + "</td> <td>" + data.hr_id + "</td>  <td>just now</td><td><button class='edit-modal btn btn-info btn-sm'  data-id='" + data.id + "'  data-kpi1_field='" + data.kpi1_field + "'   data-kpi1_target='" + data.kpi1_target + "'   data-kpi1_weight='" + data.kpi1_weight + "'   data-kpi1_staff='" + data.kpi1_staff + "'   data-kpi1_manager='" + data.kpi1_manager + "'   data-kpi2_field='" + data.kpi2_field + "'   data-kpi2_target='" + data.kpi2_target + "'   data-kpi2_weight='" + data.kpi2_weight + "'   data-kpi2_staff='" + data.kpi2_staff + "'   data-kpi2_manager='" + data.kpi2_manager + "'   data-kpi3_field='" + data.kpi3_field + "'   data-kpi3_target='" + data.kpi3_target + "'   data-kpi3_weight='" + data.kpi3_weight + "'   data-kpi3_staff='" + data.kpi3_staff + "'   data-kpi3_manager='" + data.kpi3_manager + "'   data-kpi4_field='" + data.kpi4_field + "'   data-kpi4_target='" + data.kpi4_target + "'   data-kpi4_weight='" + data.kpi4_weight + "'   data-kpi4_staff='" + data.kpi4_staff + "'   data-kpi4_manager='" + data.kpi4_manager + "'   data-kpi5_field='" + data.kpi5_field + "'   data-kpi5_target='" + data.kpi5_target + "'   data-kpi5_weight='" + data.kpi5_weight + "'   data-kpi5_staff='" + data.kpi5_staff + "'   data-kpi5_manager='" + data.kpi5_manager + "'   data-kpi6_field='" + data.kpi6_field + "'   data-kpi6_target='" + data.kpi6_target + "'   data-kpi6_weight='" + data.kpi6_weight + "'   data-kpi6_staff='" + data.kpi6_staff + "'   data-kpi6_manager='" + data.kpi6_manager + "'   data-kpi7_field='" + data.kpi7_field + "'   data-kpi7_target='" + data.kpi7_target + "'   data-kpi7_weight='" + data.kpi7_weight + "'   data-kpi7_staff='" + data.kpi7_staff + "'   data-kpi7_manager='" + data.kpi7_manager + "'   data-kpi8_field='" + data.kpi8_field + "'   data-kpi8_target='" + data.kpi8_target + "'   data-kpi8_weight='" + data.kpi8_weight + "'   data-kpi8_staff='" + data.kpi8_staff + "'   data-kpi8_manager='" + data.kpi8_manager + "'   data-kpi_comment_staff='" + data.kpi_comment_staff + "'   data-kpi_comment_manager='" + data.kpi_comment_manager + "'   data-competency1_field='" + data.competency1_field + "'   data-competency1_target='" + data.competency1_target + "'   data-competency1_weight='" + data.competency1_weight + "'   data-competency1_staff='" + data.competency1_staff + "'   data-competency1_manager='" + data.competency1_manager + "'   data-competency2_field='" + data.competency2_field + "'   data-competency2_target='" + data.competency2_target + "'   data-competency2_weight='" + data.competency2_weight + "'   data-competency2_staff='" + data.competency2_staff + "'   data-competency2_manager='" + data.competency2_manager + "'   data-competency3_field='" + data.competency3_field + "'   data-competency3_target='" + data.competency3_target + "'   data-competency3_weight='" + data.competency3_weight + "'   data-competency3_staff='" + data.competency3_staff + "'   data-competency3_manager='" + data.competency3_manager + "'   data-competency_comment_staff='" + data.competency_comment_staff + "'   data-competency_comment_manager='" + data.competency_comment_manager + "'   data-behavioural1_field='" + data.behavioural1_field + "'   data-behavioural1_target='" + data.behavioural1_target + "'   data-behavioural1_weight='" + data.behavioural1_weight + "'   data-behavioural1_staff='" + data.behavioural1_staff + "'   data-behavioural1_manager='" + data.behavioural1_manager + "'   data-behavioural2_field='" + data.behavioural2_field + "'   data-behavioural2_target='" + data.behavioural2_target + "'   data-behavioural2_weight='" + data.behavioural2_weight + "'   data-behavioural2_staff='" + data.behavioural2_staff + "'   data-behavioural2_manager='" + data.behavioural2_manager + "'   data-behavioural_comment_staff='" + data.behavioural_comment_staff + "'   data-behavioural_comment_manager='" + data.behavioural_comment_manager + "'   data-development1_field='" + data.development1_field + "'   data-development1_target='" + data.development1_target + "'   data-development1_weight='" + data.development1_weight + "'   data-development1_staff='" + data.development1_staff + "'   data-development1_manager='" + data.development1_manager + "'   data-development2_field='" + data.development2_field + "'   data-development2_target='" + data.development2_target + "'   data-development2_weight='" + data.development2_weight + "'   data-development2_staff='" + data.development2_staff + "'   data-development2_manager='" + data.development2_manager + "'   data-development_comment_staff='" + data.development_comment_staff + "'   data-development_comment_manager='" + data.development_comment_manager + "'   data-final_comment_staff='" + data.final_comment_staff + "'   data-final_comment_manager='" + data.final_comment_manager + "'   data-promoted_to='" + data.promoted_to + "'   data-promotion_reasons='" + data.promotion_reasons + "'   data-hr_actioned='" + data.hr_actioned + "'   data-staff_actioned='" + data.staff_actioned + "'   data-manager_actioned='" + data.manager_actioned + "'   data-status='" + data.status + "'   data-completed='" + data.completed + "'   data-user_id='" + data.user_id + "'   data-manager_id='" + data.manager_id + "'   data-year='" + data.year + "'   data-hr_id='" + data.hr_id + "'   > Edit</button> <button class='delete-modal btn btn-danger btn-sm' data-id='" + data.id + "'>Delete</button></td></tr>");
-                                 
-                                 
+
+
                                  /* START Closing the form after successful post*/
                                  // alert('Thanks');
                                  $("#edit-form").hide();
                                  //  $("form").trigger('reset'); //reset the form
-                                 
+
                                  var $window = $(window)
                                  var windowSize = $window.width();
                                  if (windowSize > 992) {
@@ -1525,38 +1525,38 @@ id!!}" >
                                             });
                                  }
                                  else($('#table-content-display').show().removeClass('animated bounce'));
-                                 
+
                                  $('#table-content-display').show();
                                  /*END Closing the form after successful post*/
-                                 
-                                 
-                                 
+
+
+
                                  }
                                  }
                                  });
                           });
-    
-    
+
+
     </script>
     <script>
-    
+
     // Show a post
     $(document).on('click', '.show-modal', function () {
                    $('.modal-title').text('Show');
-                   
+
                    $('#showModal').modal('show');
                    });
-    
+
     // reloading data from table
-    
-    
+
+
     // delete a post
     $(document).on('click', '.delete-modal', function () {
                    $('.modal-title').text('Delete');
                    $('#id_delete').val($(this).data('id'));
                    $('#deleteModal').modal('show');
                    id = $('#id_delete').val();
-                   
+
                    });
     $('.modal-footer').on('click', '.delete', function () {
                           $.ajax({
@@ -1578,7 +1578,7 @@ id!!}" >
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/component.css') }}">
     @endsection
-    
+
     </div>
     </div>
     <!-- END EXAMPLE TABLE PORTLET-->
@@ -1589,13 +1589,13 @@ id!!}" >
     </div>
     <!-- END CONTENT -->
     <script type="text/javascript">
-    
+
     $(document).ready(function () {
-                      
-                      
+
+
                       //$(this).dataTable().fnClearTable();
                       // $(this).dataTable().fnDestroy();
-                      
+
                       });
     </script>
     @endsection

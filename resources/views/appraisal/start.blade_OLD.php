@@ -1,4 +1,4 @@
-@extends('layouts.frontend_kpi')
+@extends('layouts.app_kpi')
     @section('page_title')Annual Appraisal @endsection
 
 @section('content')
@@ -40,7 +40,7 @@
 				<!-- <div class="m-heading-1 border-green m-bordered">
 					<h3>Annual Appraisal and 2018 KEY PERFORMANCE INDICATORS
 					(KPI'S)</h3>
-					
+
 				</div> -->
 				<div class="portlet light " id="form_wizard_1">
 					<div class="portlet-title">

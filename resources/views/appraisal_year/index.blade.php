@@ -1,4 +1,4 @@
-@extends('layouts.frontend') @section('content')
+@extends('layouts.app') @section('content')
 
 @section('page_title') Appraisal Year @endsection
         <!-- BEGIN CONTENT -->
@@ -157,9 +157,9 @@
                                                                             <input type="hidden" name="_token" value="FAoKt9NQHDIAz0lpuHOdHu6IeWveBXg4ZTA5ppyd">
                                                                         </thead>
                                                                         <tbody id="PostContent">
-                                                                            @foreach($appraisal_years as $appraisal_year) 
+                                                                            @foreach($appraisal_years as $appraisal_year)
                                                                             <tr class="item{!!$appraisal_year->
-                                                                                id!!}" > 
+                                                                                id!!}" >
                                                                                 <td>{!!$appraisal_year->year!!}</td>
                                                                                 <td>{!!$appraisal_year->title!!}</td>
                                                                                 <td>{!!$appraisal_year->updated_at->diffForHumans()!!} </td>
@@ -168,7 +168,7 @@
                                                                                     <button class="delete-modal btn btn-danger btn-sm" data-id="{!!$appraisal_year->id!!}"> Delete </button>
                                                                                 </td>
                                                                             </tr>
-                                                                            @endforeach 
+                                                                            @endforeach
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
@@ -184,7 +184,7 @@
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal">×</button>
+                                                        <button type="button" class="close" data-dismiss="modal">ï¿½</button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <p class="text-center"> Do you want to delete this Appraisal Year record </p>
@@ -204,7 +204,7 @@
                                         <!-- Page body start -->
                                         <!-- Page body end of content before includes of component-->
                                         <!-- Modal form to delete a form -->
-                                        @section('scripts') 
+                                        @section('scripts')
                                         <!-- sweet alert js -->
 
 <!-- sweet alert js -->
@@ -402,7 +402,7 @@
     // Show a post
     $(document).on('click', '.show-modal', function () {
         $('.modal-title').text('Show');
-        
+
         $('#showModal').modal('show');
     });
 
