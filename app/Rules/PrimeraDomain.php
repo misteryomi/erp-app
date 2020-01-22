@@ -30,7 +30,7 @@ class PrimeraDomain implements Rule
     {
         $arr = explode('@', $value);
 
-        return in_array($arr[1], ['primera-africa.com', 'primeramfbank.com']);
+        return in_array($arr[1], ['primera-africa.com', 'primeramfbank.com', 'primeracredit.com']);
     }
 
     /**

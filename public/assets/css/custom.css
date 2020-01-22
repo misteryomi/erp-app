@@ -44,3 +44,16 @@
     padding-top: 140;
     background-color: #172b4d;
 } */
+.g-sidenav-pinned .sidenav {
+    max-width: 205px!important;
+}
+
+@media (min-width: 1200px) {
+    .g-sidenav-pinned .sidenav.fixed-left+.main-content {
+        margin-left: 205px!important;
+    }
+}
+
+.navbar-vertical.navbar-expand-xs .navbar-nav .nav .nav-link {
+    padding-left: 3.9rem!important;
+}

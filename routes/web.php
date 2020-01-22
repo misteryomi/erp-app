@@ -18,6 +18,7 @@ Route::get('/login', 'AuthController@login')->name('login');
 Route::post('/login', 'AuthController@postLogin')->name('post.login');
 Route::get('/register', 'AuthController@register')->name('register');
 Route::post('/register', 'AuthController@postRegister')->name('post.register');
+Route::get('/register/complete', 'AuthController@completeRegister')->name('register.complete');
 Route::get('/logout', 'AuthController@logout')->name('logout');
 
 Route::get('/forgot-password/{token?}', 'AuthController@forgotPassword')->name('forgot-password');

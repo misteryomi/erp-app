@@ -101,6 +101,9 @@ class User extends Authenticatable
         return $this->hasOne(ResetPassword::class, 'email', 'email');
     }
 
+    public function token() {
+        return $this->hasOne(AccountToken::class, 'email', 'email');
+    }
 
     /**
      * Returns loans requested by by this user
@@ -156,7 +159,7 @@ class User extends Authenticatable
 
 
     public function isBirthday() {
-
         return $this->dob != '' ? (Carbon::parse($this->dob)->format('d-m-Y') == Carbon::now()->format('d-m-Y')) : false;
     }
+
 }

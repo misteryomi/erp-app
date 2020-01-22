@@ -18,25 +18,25 @@
                 @csrf
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label><small>Desired Username</small></label>
+                        <label><small>Desired Username<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="username" value="{{ old('username') }}" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Email</small></label>
+                        <label><small>Email<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="email" value="{{ old('email') }}" type="email" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Password</small></label>
+                        <label><small>Password<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="password" required type="password">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Confirm Password</small></label>
+                        <label><small>Confirm Password<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="password_confirmation" required type="password">
                         </div>
@@ -45,31 +45,31 @@
                 <h3>Personal Details</h3>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label><small>First Name</small></label>
+                        <label><small>First Name<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="first_name"  value="{{ old('first_name') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Last Name</small></label>
+                        <label><small>Last Name<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="last_name" value="{{ old('last_name') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Home address</small></label>
+                        <label><small>Home address<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="location"  value="{{ old('location') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Date of Birth</small></label>
+                        <label><small>Date of Birth<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="dob"  value="{{ old('dob') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Gender</small></label>
+                        <label><small>Gender<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                             <select class="form-control" name="sex" required>
                                 <option value="">Select an option</option>
@@ -79,23 +79,19 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Phone Number</small></label>
+                        <label><small>Phone Number<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="phone"  value="{{ old('phone') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>State of Origin</small></label>
+                        <label><small>State of Origin<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <select class="form-control" name="state_of_origin" required>
-                                <option value="">Select an option</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                            </select>
+                            <input type="text" class="form-control" value="{{ old('state_of_origin') }}" name="state_of_origin" required />
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Marital Status</small></label>
+                        <label><small>Marital Status<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                             <select class="form-control" name="marital_status" required>
                                 <option value="">Select an option</option>
@@ -106,9 +102,9 @@
                         </div>
                     </div>
                     <div class="form-group col-md-12">
-                        <label><small>BIO (Tell us something interesting about yourself)</small></label>
+                        <label><small>BIO (Tell us something interesting about yourself)<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <textarea class="form-control" name="bio" value="{{ old('bio') }}" required></textarea>
+                            <textarea class="form-control" name="bio" required>{{ old('bio') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
@@ -118,24 +114,18 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Department</small></label>
+                        <label><small>Department<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <select class="form-control" name="department" required>
+                            <select class="form-control" id="departments" name="department" required>
                                 <option value="">Select an option</option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Unit</small></label>
+                        <label><small>Unit<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <select class="form-control" name="sub_unit" required>
+                            <select class="form-control" id="units" name="sub_unit" required disabled>
                                 <option value="">Select an option</option>
-                                <option>Single</option>
-                                <option>Married</option>
-                                <option>Divorced</option>
                             </select>
                         </div>
                     </div>
@@ -158,13 +148,13 @@
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Emergency Contact Person</small></label>
+                        <label><small>Emergency Contact Person<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="emergency_contact_person" value="{{ old('emergency_contact_person') }}" required type="text">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Emergency Contact's Phone Number</small></label>
+                        <label><small>Emergency Contact's Phone Number<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="emergency_contact_phone" value="{{ old('emergency_contact_phone') }}" required  type="text">
                         </div>
@@ -179,19 +169,19 @@
                 <h3>Salary Bank Details</h3>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label><small>Bank Name</small></label>
+                        <label><small>Bank Name<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="salary_account_bank" value="{{ old('salary_account_bank') }}" required  type="text">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Account Name</small></label>
+                        <label><small>Account Name<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="salary_account_name" value="{{ old('salary_account_name') }}" required  type="text">
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label><small>Account Number</small></label>
+                        <label><small>Account Number<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
                         <input class="form-control" name="salary_account_no" value="{{ old('salary_account_no') }}" required  type="text">
                         </div>
@@ -213,8 +203,9 @@
                     </div>
                 </div>
 
-                <div class="g-recaptcha" data-sitekey="6LerW8oUAAAAAIUnhm9cDz2qQrDJZqfYRcum9ays"></div>
-                <br/>
+                <div class="d-flex justify-content-center">
+                    <div class="g-recaptcha" data-sitekey="6Lf5ptEUAAAAAAAlkmtSgdQC5KHfqWdp7GzJl6aq"></div>
+                </div>
 
                 <div class="text-center">
                   <button type="submit" class="btn btn-block btn-primary my-4">Create Account</button>
@@ -227,12 +218,6 @@
   </div>
 @endsection
 @section('scripts')
-<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-    async defer>
-</script>
-<script type="text/javascript">
-  var onloadCallback = function() {
-    console.log("grecaptcha is ready!");
-  };
-</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+@include('includes.units')
 @endsection

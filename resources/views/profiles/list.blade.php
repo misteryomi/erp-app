@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body justify-content-center d-flex">
                     <form action="?search" class="form-inline">
                         <label class="sr-only" for="inlineFormInputName2">Name</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" name="q" placeholder="Enter staff name or username" />
