@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AccountToken;
 use App\Mail\NewUserAccount;
+use App\Mail\PasswordResetMail;
 use App\Models\Department;
 use App\ResetPassword;
 use Illuminate\Http\Request;
@@ -152,6 +153,9 @@ class AuthController extends Controller
 
         $token = Str::random(40);
         $user->passwordReset()->create(['token' => $token]);
+
+        //Send mail
+        Mail::to($user->email)->queue(new PasswordResetMail($user, $token));
 
         return redirect()->back()->withMessage('A passsword reset link has been sent to your email address. Please check your mail to continue');
     }
