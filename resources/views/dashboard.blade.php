@@ -23,7 +23,7 @@
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-default mb-0">Helpdesk</h5>
-                          <span class="h2 font-weight-bold mb-0">0</span>
+                          <span class="h2 font-weight-bold mb-0">{{ $stats->helpdesk }}</span>
                           <small class="d-block">Pending issues</small>
                         </div>
                         <div class="col-auto">
@@ -34,7 +34,7 @@
                       </div>
                       <p class="mt-3 mb-0 text-sm">
                         {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
-                        <small><a href="#" class="text-nowrap font-weight-bold">Having issues? Raise a ticket<i class="fa fa-arrow-right"></i></a></small>
+                        <small><a href="{{ route('tickets.new') }}" class="text-nowrap font-weight-bold">Having issues? Raise a ticket <i class="fa fa-arrow-right"></i></a></small>
                       </p>
                     </div>
                   </div>
@@ -46,7 +46,7 @@
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-default mb-0">Leave</h5>
-                          <span class="h2 font-weight-bold mb-0">0</span>
+                          <span class="h2 font-weight-bold mb-0">{{ $stats->leave }}</span>
                           <small class="d-block">Annual leave left</small>
                         </div>
                         <div class="col-auto">
@@ -57,7 +57,7 @@
                       </div>
                       <p class="mt-3 mb-0 text-sm">
                         {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
-                        <small><a href="#" class="text-nowrap font-weight-bold">Apply for Leave<i class="fa fa-arrow-right"></i></a></small>
+                        <small><a href="{{ route('leave.create') }}" class="text-nowrap font-weight-bold">Apply for Leave <i class="fa fa-arrow-right"></i></a></small>
                       </p>
                     </div>
                   </div>
@@ -69,8 +69,8 @@
                       <div class="row">
                         <div class="col">
                           <h5 class="card-title text-uppercase text-default mb-0">Tokenization</h5>
-                          <span class="h2 font-weight-bold mb-0">0</span>
-                          <small class="d-block">Pending</small>
+                            <span class="h2 font-weight-bold mb-0">{{ $stats->tokenization }}</span>
+                          <small class="d-block">Records</small>
                         </div>
                         <div class="col-auto">
                           <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
@@ -80,7 +80,7 @@
                       </div>
                       <p class="mt-3 mb-0 text-sm">
                         {{-- <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span> --}}
-                        <small><a href="#" class="text-nowrap font-weight-bold">Tokenize card <i class="fa fa-arrow-right"></i></a></small>
+                        <small><a href="{{ route('tokenize.card') }}" class="text-nowrap font-weight-bold">Tokenize card <i class="fa fa-arrow-right"></i></a></small>
                       </p>
                     </div>
                   </div>
@@ -95,37 +95,37 @@
                           <h3 class="card-title text-white">Work Tools</h3>
 
                           <div class="row shortcuts px-4">
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="/corporative" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-red">
                                 <i class="ni ni-calendar-grid-58"></i>
                               </span>
                               <small>Corporative</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="{{ route('sms.index') }}" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
                                 <i class="ni ni-email-83"></i>
                               </span>
                               <small>Customer Notification</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="http://mybankstatement.net/" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-info">
                                 <i class="ni ni-credit-card"></i>
                               </span>
                               <small>Account Statement</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="http://172.16.16.17:9095/t24dev/servlet/BrowserServlet" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-green">
                                 <i class="ni ni-books"></i>
                               </span>
                               <small>T-24</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="/fast-track/" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
                                 <i class="ni ni-pin-3"></i>
                               </span>
                               <small>Fast Track</small>
                             </a>
-                            <a href="#!" class="col-4 shortcut-item">
+                            <a href="/snap" class="col-4 shortcut-item text-light">
                               <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
                                 <i class="ni ni-basket"></i>
                               </span>
@@ -143,20 +143,20 @@
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush list my--3">
-                                @foreach($birthdays as $user)
+                                @foreach($latestStaff as $user)
                                 <li class="list-group-item px-0">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                         <!-- Avatar -->
-                                        <a href="{{ route('profile.show', ['user' => $user->username]) }}" class="avatar rounded-circle">
+                                        <a href="{{ route('profile.show', ['user' => $user->username]) }}" class="avatar avatar-xs rounded-circle">
                                             <img alt="" src="{{ $user->avatar }}">
                                         </a>
                                     </div>
                                     <div class="col ml--2">
-                                        <h4 class="mb-0">
-                                            <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
-                                        </h4>
-                                        <span class="text-success">●</span>
+                                        <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
+                                        @if($user->created_at)
+                                        <small class="d-block text-muted">Joined {{ $user->created_at->diffForHumans() }}</small>
+                                        @endif
                                     </div>
                                 </li>
                                 @endforeach
@@ -196,6 +196,7 @@
                     <h5 class="h3 mb-0"><i class="fa fa-birthday-cake"></i> Upcoming Birthdays</h5>
                 </div>
                 <div class="card-body">
+                    @if($birthdays->count() > 0)
                     <ul class="list-group list-group-flush list my--3">
                         @foreach($birthdays as $user)
                         <li class="list-group-item px-0">
@@ -220,6 +221,9 @@
                         </li>
                         @endforeach
                     </ul>
+                    @else
+                    <p>No birthday record for today</p>
+                    @endif
                 </div>
             </div>
             <div class="card">

@@ -101,12 +101,26 @@ class Ticket extends Model
         return $this->belongsTo(TicketVendor::class, 'assigned_to');
     }
 
+
+    /**
+     * Return all pending tickets
+     */
+    public function pendingTickets() {
+        $tickets = $this->whereHas('status', function($query) {
+                        return $query->where('name', 'Solved');
+                    });
+
+        return $tickets;
+    }
+
+
     /**
      * Returns all users ever assigned to this ticket
      */
     public function allAssignedTo() {
         return $this->hasMany(TicketAssignedUser::class, 'ticket_id');
     }
+
 
     /**
      * Retrieve single assignment information

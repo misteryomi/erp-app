@@ -112,6 +112,14 @@ class User extends Authenticatable
         return $this->hasMany(LoanRequest::class, 'staff_id', 'laravel_user_id');
     }
 
+
+    /**
+     * Returns tokenization record for user
+     */
+    public function tokenization() {
+        return $this->hasMany(Flutterwafe::class, 'user_id', 'laravel_user_id');
+    }
+
     /**
      * For routing using {username}
      */
