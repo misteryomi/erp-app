@@ -153,6 +153,7 @@
                                         </a>
                                     </div>
                                     <div class="col ml--2">
+                                    {{ $user->ID }}
                                         <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
                                         @if($user->created_at)
                                         <small class="d-block text-muted">Joined {{ $user->created_at->diffForHumans() }}</small>

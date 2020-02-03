@@ -53,6 +53,10 @@ class User extends Authenticatable
     protected $date = ['dob'];
 
 
+    public function getIDAttribute() {
+        return $this->id;
+    }
+
     /**
      * Merged details of the user's data that could be publicly seen or edited.
      *  @param string $type = null | 'all'
