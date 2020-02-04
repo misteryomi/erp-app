@@ -20,12 +20,12 @@
   <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet" />
   <link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" type="text/css" />
+  <!-- <link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" type="text/css" /> -->
 
   {{-- <link rel="stylesheet" href="assets/vendor/nucleo/css/nucleo.css" type="text/css">
   <link rel="stylesheet" href="assets/vendor/fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" /> --}}
-  <!-- Page plugins -->
+<!-- Page plugins -->
   <!-- Argon CSS -->
   {{-- <link rel="stylesheet" href="assets/css/argon.min9f1e.css?v=1.1.0" type="text/css"> --}}
   @yield('kc_styles')

@@ -9,6 +9,8 @@ class UserDetails extends Model
 {
     protected $guarded = [];
 
+    protected $date = ['date_employed'];
+
     public function details() {
         return $this->belongsTo(User::class);
     }

@@ -15,29 +15,8 @@
 </div>
 @endsection
 @section('content')
-    @include('layouts.partials.alert')
 
-    @if($folders->count() > 0)
-    <div class="row">
-    @foreach($folders as $folder)
-        @php $defaultPicture = $folder->pictures()->first(); @endphp
-        <div class="col-md-4">
-            <a href="{{ route('gallery.show', ['folder' => $folder->id]) }}">
-            <div class="card">
-                <img class="card-img-top" src="{{ $defaultPicture ? $defaultPicture->url : '' }}" alt="">
-                <div class="card-body">
-                    <small class="text-muted">{{ $folder->description }}</small>
-                </div>
-            </div>
-            </a>
-        </div>
-    @endforeach
-    </div>
-    @else
-    <p>No folder/files found</p>
-    @endif
-
-
+    <div id="irs_gallery_folders"></div>
 
 
 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">

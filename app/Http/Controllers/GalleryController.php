@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Gallery;
 use App\GalleryFolder;
 use App\Http\Resources\GalleryResource;
+use App\Http\Resources\GalleryFolderResource;
 use Illuminate\Http\Request;
 
 
@@ -23,15 +24,27 @@ class GalleryController extends Controller
 
     public function index() {
         // $pictures = json_encode(GalleryResource::collection($this->picture->all()), JSON_UNESCAPED_SLASHES);
+
+        return view('gallery.index');
+    }
+
+    public function list() {
         $folders = $this->folder->all();
 
-        return view('gallery.index', compact('folders'));
+
+        return GalleryFolderResource::collection($folders)->toJson();
     }
 
     public function show(GalleryFolder $folder) {
+
+        return view('gallery.show', compact('folder'));
+    }
+
+
+    public function folderPictures(GalleryFolder $folder) {
         $pictures = $folder->pictures()->get();
 
-        return view('gallery.show', compact('folder', 'pictures'));
+        return GalleryResource::collection($pictures)->toJson();
     }
 
     public function storeFolder(Request $request) {

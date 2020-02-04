@@ -28,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','avatar','admin','department','sub_unit','level','designation','dob','sex', 'staff_id'
+        'name', 'email', 'username', 'password','avatar','admin','department','sub_unit','level','designation','dob','sex', 'staff_id'
     ];
 
 
@@ -53,9 +53,9 @@ class User extends Authenticatable
     protected $date = ['dob'];
 
 
-    public function getIDAttribute() {
-        return $this->id;
-    }
+    // public function getIDAttribute() {
+    //     return $this->id;
+    // }
 
     /**
      * Merged details of the user's data that could be publicly seen or edited.

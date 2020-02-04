@@ -65,7 +65,7 @@
                     <div class="form-group col-md-6">
                         <label><small>Date of Birth<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                        <input class="form-control" name="dob"  value="{{ old('dob') }}" type="text" required>
+                        <input class="form-control datepicker"  autocomplete="off" name="dob"  value="{{ old('dob') }}" type="text" required>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
@@ -162,7 +162,7 @@
                     <div class="form-group col-md-12">
                         <label><small>Date Employed</small></label>
                         <div class="input-group input-group-alternative">
-                        <input class="form-control" name="date_employed" value="{{ old('date_employed') }}"  type="text">
+                        <input class="form-control datepicker" autocomplete="off" name="date_employed" value="{{ old('date_employed') }}"  type="text">
                         </div>
                     </div>
                 </div>
@@ -219,5 +219,7 @@
 @endsection
 @section('scripts')
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- <script src="{{ asset('assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script> -->
+
 @include('includes.units')
 @endsection

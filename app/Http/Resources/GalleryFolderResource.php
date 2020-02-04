@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GalleryResource extends JsonResource
+class GalleryFolderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,13 @@ class GalleryResource extends JsonResource
      */
     public function toArray($request)
     {
+        $default_image = $this->pictures()->first();
+        
         return [
-            'src' => $this->url,
-            'thumbnail' => $this->url,
-            'thumbnailWidth' => 320,
-            'thumbnailHeight' => 213,
-            'caption' => $this->description
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'default_image' => $default_image ? $default_image->url : null
         ];
     }
 }

@@ -15,25 +15,9 @@
 </div>
 @endsection
 @section('content')
-    @include('layouts.partials.alert')
-    @if($pictures->count() > 0)
-    <div class="gallery row">
-    @foreach($pictures as $picture)
-        <div  class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <a href="{{ $picture->url }}">
-                        <img class="card-img-top" src="{{ $picture->url }}" alt="" title="{{ $picture->caption }}">
-                    </a>
-                </div>
-            </div>
 
-        </div>
-    @endforeach
-    </div>
-    @else
-    <p>No picture has been added yet</p>
-    @endif
+    <div id="irs_gallery_files"></div>
+
 
 
 

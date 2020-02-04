@@ -48,7 +48,7 @@ class AuthController extends Controller
                             'username' => 'required|unique:users',
                             'email' => ['required', 'email', 'unique:users', new PrimeraDomain],
                             'password' => 'required|confirmed',
-                            // 'g-recaptcha-response' => ['required', new ValidCaptcha]
+                            'g-recaptcha-response' => ['required', new ValidCaptcha]
                         ]);
 
         if($validation->fails()) {
@@ -56,15 +56,15 @@ class AuthController extends Controller
         }
 
         $requestData = $request->all();
-        $userData = $request->only(['username', 'email', 'password', 'date_registered', 'name', 'level', 'sub_unit', 'designation', 'dob', 'sex']);
+        $userData = $request->only(['username', 'email', 'password', 'date_registered', 'name', 'level', 'department', 'sub_unit', 'designation', 'dob', 'sex']);
         $userData['name'] = $request->first_name .' '. $request->last_name;
 
-        $userData['dob'] = \Carbon\Carbon::now();
+        $userData['dob'] = \Carbon\Carbon::parse($request->dob);
         $user = $this->user->create($userData);
 
         $userDetailsData = \array_diff($requestData, $userData, $request->only(['first_name', 'last_name', '_token', 'dob', 'g-recaptcha-response']));
 
-        $userDetailsData['date_employed'] = \Carbon\Carbon::now();
+        $userDetailsData['date_employed'] = \Carbon\Carbon::parse($request->date_employed);
         $user->details()->create($userDetailsData);
 
         $token = Str::random(30);
