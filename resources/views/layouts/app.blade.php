@@ -5,7 +5,7 @@
         <strong>Announcement:</strong> 
         <span></span>
       <button class="btn btn-primary" id="btn-bar" data-toggle="modal" data-target="#anouncementModal">Read More</button>
-      <a href="#" id="close-bar" onClick="hideAnnouncementModal()">×</a></div>
+      <a href="#" class="text-white" id="close-bar">×</a></div>
 
    @include('layouts.partials.sidebar')
   <div class="main-content" id="panel">
@@ -36,7 +36,6 @@
             </div>
         </div>
     </div>
-
 
     <footer class="footer">
         <div class="text-center">

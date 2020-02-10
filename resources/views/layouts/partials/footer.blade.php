@@ -81,10 +81,12 @@
           $('#close-bar').click(function() {
             hideAnnouncementModal();            
           })
+
           function hideAnnouncementModal() {
             $('#ofBar').hide();
           }
 
+          $('#welcomeModal').modal('show');
 
 
     });

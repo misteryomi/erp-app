@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Tab, Row, Col, Nav, Card} from 'react-bootstrap';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class Folders extends Component {
@@ -64,7 +64,7 @@ class Folders extends Component {
                                                 <Row>
                                                 {folders.map((item, index) => 
                                                             <Col md={4}>
-                                                                <a href={`/gallery/folder/${item.id}`}>
+                                                                <a href={`/gallery/${item.id}`}>
                                                                     <Card>
                                                                         <Card.Img variant="top" src={item.default_image} />
                                                                         <Card.Body>
@@ -80,7 +80,7 @@ class Folders extends Component {
                                                 <Tab.Pane eventKey={index}>
                                                     <Row>
                                                         <Col md={4}>
-                                                            <a href={`/gallery/folder/${item.id}`}>
+                                                            <a href={`/gallery/${item.id}`}>
                                                                 <Card>
                                                                     <Card.Img variant="top" src={item.default_image} />
                                                                     <Card.Body>

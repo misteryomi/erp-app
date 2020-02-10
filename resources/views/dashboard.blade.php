@@ -139,7 +139,7 @@
                   <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="h3 mb-0"><i class="fa fa-birthday-cake"></i> Latest Staff</h5>
+                            <h5 class="h3 mb-0"><i class="fa fa-users"></i> Latest Staff</h5>
                         </div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush list my--3">
@@ -260,5 +260,31 @@
 
         </div>
     </div>
+
+
+
+    <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModal" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="welcomeModal">Welcome to IRS!!!!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                "Welcome to IRS!"
+                <br/>
+
+                <div class="mt-4 pt-4 border-top">
+                    <a href="#" class="btn btn-primary"><i class="fa fa-file mr-2"></i> Dressing Policy</a>
+                    <a href="#" class="btn btn-primary"><i class="fa fa-file mr-2"></i> Dressing Policy</a>
+                    <a href="#" class="btn btn-primary"><i class="fa fa-file mr-2"></i> Dressing Policy</a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @endsection

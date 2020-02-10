@@ -8,11 +8,20 @@ export default class Show extends Component {
 
         this.state = {
             images: [],
-            currentImage: 0
+            currentImage: 0,
+            loading: false,
+            hasMore: false,
         };
 
         this.onCurrentImageChange = this.onCurrentImageChange.bind(this);
         this.deleteImage = this.deleteImage.bind(this);
+        this.loadMore = this.loadMore.bind(this);
+
+
+        window.onscroll = () => {
+            this.loadMore();
+        }
+    
     }
 
     componentDidMount() {
@@ -31,8 +40,6 @@ export default class Show extends Component {
         }
     }
 
-
-
     onCurrentImageChange(index) {
         this.setState({ currentImage: index });
     }
@@ -45,6 +52,19 @@ export default class Show extends Component {
                 images: images
             });
         }
+    }
+
+    loadMore() {
+        const { loading, hasMore } = this.state;
+
+     if (loading || !hasMore) return;
+
+        // Checks that the page has scrolled to the bottom
+      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+          loadUsers();
+        }
+  
+        console.log(loading, hasMore);
     }
 
     render () {

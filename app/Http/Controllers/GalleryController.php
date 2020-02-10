@@ -24,7 +24,6 @@ class GalleryController extends Controller
 
     public function index() {
         // $pictures = json_encode(GalleryResource::collection($this->picture->all()), JSON_UNESCAPED_SLASHES);
-
         return view('gallery.index');
     }
 

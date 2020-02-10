@@ -53,7 +53,7 @@
             <script src="{{ asset('assets/global/plugins/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>
             <!-- END PAGE LEVEL PLUGINS -->
 
-        {{--for inhouse scripts--}}    @yield('kc_scripts')
+            @yield('kc_scripts')
 
 
             {{--for scalford scripts--}}

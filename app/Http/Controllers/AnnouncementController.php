@@ -42,17 +42,25 @@ class AnnouncementController extends Controller
     }
 
     public function apiAnnouncements() {
-        $announcement = $this->announcement->latest()->first();
-
-        return $announcement->toJson();
+        $announcement = $this->announcement->whereDoesntHave('seen', function($query) {
+                                return $query->where('user_id', $this->user->id);
+                            })
+                            ->where('active', 1)
+                            ->whereDate('expiry', '>=', \Carbon\Carbon::now())
+                            ->latest()->first();   
+        
+        return $announcement ? $announcement->toJson() : [];
     }
 
-    public function new() {
-        $announcement = $this->announcement->whereNotIn('seen', function($query) {
-                                    return $query->where('user_id', $this->user->id);
-                                })->latest()->first();        
-        return $announcement->toJson();
-    }
+    // public function new() {
+    //     $announcement = $this->announcement->whereNotIn('seen', function($query) {
+    //                                 return $query->where('user_id', $this->user->id);
+    //                             })
+    //                             ->where('active', 1)
+    //                             ->where('expiry', '<=', \Carbon\Carbon::now())
+    //                             ->latest()->first();        
+    //     return $announcement->toJson();
+    // }
 
     public function store(Request $request) {
         $request->validate([
@@ -84,7 +92,7 @@ class AnnouncementController extends Controller
 
         $announcement->update(['active' => 0]);
 
-        return redirect(route('announcement.index'))->withMessage('Announcement unpublished successfully!');
+        return redirect()->route('announcement.index')->withMessage('Announcement unpublished successfully!');
     }
 
     private function publish($id) {
@@ -95,7 +103,7 @@ class AnnouncementController extends Controller
         }
         $announcement->update(['active' => 1]);
 
-        return redirect(route('announcement.index'))->withMessage('Announcement published successfully!');
+        return redirect()->route('announcement.index')->withMessage('Announcement published successfully!');
     }
 
     private function delete($id) {
@@ -107,7 +115,7 @@ class AnnouncementController extends Controller
 
         $announcement->delete();
 
-        return redirect(route('announcement.index'))->withMessage('Announcement deleted successfully!');
+        return redirect()->route('announcement.index')->withMessage('Announcement deleted successfully!');
     }
 
 }
