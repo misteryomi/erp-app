@@ -1,8 +1,9 @@
 <div class="col-md-4">
     <div class="card">
     <div class="card-body">
-        <a href="{{ route('profile.show', ['user' => $user->username ]) }}">
-            <img src="{{ $user->avatar }}" class="rounded-circle img-center img-fluid shadow shadow-lg--hover" style="width: 140px;">
+        <a href="{{ route('profile.show', ['user' => $user->username ]) }}" class="justify-content-center d-flex">
+            <img src="{{ $user->avatar }}" class="avatar avatar-xl rounded-circle shadow shadow-lg--hover">
+            {{-- class="avatar avatar-sm rounded-circle" --}}
         </a>
         <div class="pt-4 text-center">
             @if($user->isBirthday())

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Department;
+use App\Models\DepartmentUnit;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -72,11 +73,19 @@ class User extends Authenticatable
 
         $profile = array_merge($user, $details->toArray());
 
-        if(!$type) {
-            $hideThese = ['id', 'staff_id', 'is_active', 'is_activated', 'updated_at', 'user_id', 'user_pass', 'avatar'];
+        $profile['department'] = $this->details->department ? $this->details->department->name : $this->department;
+        $profile['unit'] = $this->details->unit ? $this->details->unit->name : $this->sub_unit;
 
-            $profile = array_filter($profile, function($key) use ($hideThese) {
-                return !in_array($key, $hideThese);
+
+        if(!$type) {
+            $hideThese = ['id', 'staff_id', 'is_active', 'is_activated', 'sub_unit', 'department_id', 'updated_at', 'user_id', 'user_pass', 'avatar', 'level'];
+            $showThese = ['username', 'name', 'email', 'department', 'unit', 'designation', 'sex', 'state_of_origin', 'marital_status', 'bio'];
+
+            $profile = array_filter($profile, function($key) use ($hideThese, $showThese) {
+                if(auth()->user()->can('view-full-profile') || (auth()->user()->id == $this->id)) {
+                    return !in_array($key, $hideThese);
+                }
+                return in_array($key, $showThese);
             }, ARRAY_FILTER_USE_KEY) ;
         }
 
@@ -140,6 +149,7 @@ class User extends Authenticatable
     public function setPasswordAttribute($value) {
         $this->attributes['password'] = Hash::make($value);
     }
+
 
 
     public function getAvatarAttribute($value) {
