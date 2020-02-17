@@ -74467,15 +74467,14 @@ function (_Component) {
       images: [],
       currentImage: 0,
       loading: false,
-      hasMore: false
+      hasMore: false,
+      next_page_url: null
     };
     _this.onCurrentImageChange = _this.onCurrentImageChange.bind(_assertThisInitialized(_this));
     _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
-    _this.loadMore = _this.loadMore.bind(_assertThisInitialized(_this));
-
-    window.onscroll = function () {
-      _this.loadMore();
-    };
+    _this.loadMore = _this.loadMore.bind(_assertThisInitialized(_this)); // window.onscroll = () => {
+    //     this.loadMore();
+    // }
 
     return _this;
   }
@@ -74488,35 +74487,36 @@ function (_Component) {
   }, {
     key: "fetchPictures",
     value: function fetchPictures() {
-      var response;
+      var next_page_url, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function fetchPictures$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get('/gallery/folder/4'));
+              next_page_url = this.state.next_page_url;
+              _context.prev = 1;
+              _context.next = 4;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(axios.get(next_page_url ? next_page_url : '/gallery/folder/4'));
 
-            case 3:
+            case 4:
               response = _context.sent;
               console.log(response);
               response.data && this.setState({
-                images: response.data
+                images: response.data.data
               });
-              _context.next = 11;
+              _context.next = 12;
               break;
 
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](1);
               console.log(_context.t0, _context.t0.message);
 
-            case 11:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, null, this, [[0, 8]]);
+      }, null, this, [[1, 9]]);
     }
   }, {
     key: "onCurrentImageChange",
@@ -74535,21 +74535,14 @@ function (_Component) {
           images: images
         });
       }
-    }
-  }, {
-    key: "loadMore",
-    value: function loadMore() {
-      var _this$state = this.state,
-          loading = _this$state.loading,
-          hasMore = _this$state.hasMore;
-      if (loading || !hasMore) return; // Checks that the page has scrolled to the bottom
+    } // loadMore() {
+    //     const { loading, hasMore, next_page_url } = this.state;
+    //     if (loading || !hasMore) return;
+    //     if (next_page_url && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    //         fetchPictures();
+    //     }
+    // }
 
-      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-        loadUsers();
-      }
-
-      console.log(loading, hasMore);
-    }
   }, {
     key: "render",
     value: function render() {

@@ -41,9 +41,10 @@ class GalleryController extends Controller
 
 
     public function folderPictures(GalleryFolder $folder) {
-        $pictures = $folder->pictures()->get();
+        $pictures = $folder->pictures()->get(); //paginate(1);
 
         return GalleryResource::collection($pictures)->toJson();
+        // return $pictures->toJson();
     }
 
     public function storeFolder(Request $request) {

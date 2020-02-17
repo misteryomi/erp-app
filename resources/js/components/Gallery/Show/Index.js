@@ -11,6 +11,7 @@ export default class Show extends Component {
             currentImage: 0,
             loading: false,
             hasMore: false,
+            next_page_url: null
         };
 
         this.onCurrentImageChange = this.onCurrentImageChange.bind(this);
@@ -18,9 +19,9 @@ export default class Show extends Component {
         this.loadMore = this.loadMore.bind(this);
 
 
-        window.onscroll = () => {
-            this.loadMore();
-        }
+        // window.onscroll = () => {
+        //     this.loadMore();
+        // }
     
     }
 
@@ -29,11 +30,13 @@ export default class Show extends Component {
     }
 
     async fetchPictures() {
+        const { next_page_url } = this.state; 
+
         try {
-            const response = await axios.get('/gallery/folder/4');
+            const response = await axios.get(next_page_url ? next_page_url : '/gallery/folder/4');
 
             console.log(response);
-            response.data && this.setState({images : response.data})
+            response.data && this.setState({images : response.data.data})
         }
         catch (e) {
             console.log(e, e.message);
@@ -54,18 +57,16 @@ export default class Show extends Component {
         }
     }
 
-    loadMore() {
-        const { loading, hasMore } = this.state;
+    // loadMore() {
+    //     const { loading, hasMore, next_page_url } = this.state;
 
-     if (loading || !hasMore) return;
+    //     if (loading || !hasMore) return;
 
-        // Checks that the page has scrolled to the bottom
-      if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-          loadUsers();
-        }
+    //     if (next_page_url && window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+    //         fetchPictures();
+    //     }
   
-        console.log(loading, hasMore);
-    }
+    // }
 
     render () {
         return (

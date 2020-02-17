@@ -25,10 +25,14 @@ Route::get('/forgot-password/{token?}', 'AuthController@forgotPassword')->name('
 Route::post('/forgot-password', 'AuthController@postForgotPassword')->name('post.forgot-password');
 Route::post('/reset-password', 'AuthController@storePassword')->name('store-password');
 
+
+Route::get('/users/import', 'WPUserImportController');
+
 Route::middleware('auth')->group(function() use ($sub_routes) {
     Route::get('/', 'DashboardController@index')->name('home');
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notification/{notification}', 'NotificationController@show')->name('notification.show');
 
     Route::get('/documents', 'Documents\FileManagerController')->name('documents');
+
 });
