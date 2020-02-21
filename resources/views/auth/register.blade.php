@@ -116,7 +116,7 @@
                     <div class="form-group col-md-6">
                         <label><small>Department<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <select class="form-control" id="departments" name="department" required>
+                            <select class="form-control" id="departments" name="department_id" required>
                                 <option value="">Select an option</option>
                             </select>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="form-group col-md-6">
                         <label><small>Unit<sup class="text-red font-weight-900">*</sup></small></label>
                         <div class="input-group input-group-alternative">
-                            <select class="form-control" id="units" name="sub_unit" required disabled>
+                            <select class="form-control" id="units" name="unit_id" required disabled>
                                 <option value="">Select an option</option>
                             </select>
                         </div>

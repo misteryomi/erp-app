@@ -16,6 +16,8 @@ class CreateUserDetailsTable extends Migration
         Schema::create('user_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
+            $table->integer('department_id');
+            $table->integer('unit_id');
             $table->string('location')->nullable();
             $table->string('phone');
             $table->string('state_of_origin');
@@ -23,10 +25,10 @@ class CreateUserDetailsTable extends Migration
             $table->string('bio');
             $table->string('emergency_contact_person');
             $table->string('emergency_contact_phone');
-            $table->integer('salary_account_no');
+            $table->string('salary_account_no');
             $table->string('salary_account_bank');
             $table->string('salary_account_name');
-            $table->integer('intl_passport_no');
+            $table->string('intl_passport_no');
             $table->string('pension_pin');
             $table->string('pension_admin');
             $table->string('office_phone');

@@ -56,7 +56,7 @@ class AuthController extends Controller
         }
 
         $requestData = $request->all();
-        $userData = $request->only(['username', 'email', 'password', 'date_registered', 'name', 'level', 'department', 'sub_unit', 'designation', 'dob', 'sex']);
+        $userData = $request->only(['username', 'email', 'password', 'date_registered', 'name', 'level', 'designation', 'dob', 'sex']);
         $userData['name'] = $request->first_name .' '. $request->last_name;
 
         $userData['dob'] = \Carbon\Carbon::parse($request->dob);
@@ -65,6 +65,7 @@ class AuthController extends Controller
         $userDetailsData = \array_diff($requestData, $userData, $request->only(['first_name', 'last_name', '_token', 'dob', 'g-recaptcha-response']));
 
         $userDetailsData['date_employed'] = \Carbon\Carbon::parse($request->date_employed);
+        
         $user->details()->create($userDetailsData);
 
         $token = Str::random(30);
