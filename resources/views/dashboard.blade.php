@@ -273,9 +273,11 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                "Welcome to IRS!"
-                <br/>
+                <p>Dear {{ auth()->user()->name }}</p>
 
+                <p>Welcome to Primera Microfinance bank team</p>
+
+                 <p>To help you settle in kindly find in the drop down below our policy documents for our perusal; after which you are required to acknowledge the terms of the policy.</p>
                 <div class="mt-4 pt-4 border-top">
                     <a href="#" class="btn btn-primary"><i class="fa fa-file mr-2"></i> Dressing Policy</a>
                     <a href="#" class="btn btn-primary"><i class="fa fa-file mr-2"></i> Dressing Policy</a>
