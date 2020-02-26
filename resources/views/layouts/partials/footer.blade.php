@@ -12,6 +12,13 @@
 
       $(document).ready(function() {
 
+
+          $('.sidenav-toggler').click();
+
+          // setInterval(() => {
+          //     $('.g-sidenav-show').removeClass('g-sidenav-show');
+          // }, 1000);
+
           $.ajaxSetup({
               headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -19,13 +26,9 @@
           });
 
 
-        $('.sidenav-toggler').click();
-
-        setInterval(() => {
-            $('.g-sidenav-show').removeClass('g-sidenav-show');
-        }, 1000);
-
-        $('.select2').select2();
+        $('.select2').select2({
+            theme: "bootstrap"
+        });
 
           var btn = $("button[type='submit']");
 
@@ -87,8 +90,6 @@
           }
 
           $('#welcomeModal').modal('show');
-
-
     });
 
 

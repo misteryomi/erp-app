@@ -110,6 +110,12 @@ class UserController extends Controller
         return redirect()->back()->withMessage('Profile fields updated successfully!');
     }
 
+    public function readWelcomeMessage(Request $request)
+    {
+        $update = $this->user->update(['read_welcome_message' => true]);
+
+        return response(json_encode($update));
+    }
 
     private function filterResult($q, $department = null) {
 

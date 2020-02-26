@@ -8,6 +8,7 @@ Route::name('profile.')->middleware('auth')->group(function() {
 
         Route::post('/update-password', 'UserController@storePassword')->name('password.update');
         Route::post('/update-avatar', 'UserController@storeAvatar')->name('avatar.update');
+        Route::post('/read-welcome-message', 'UserController@readWelcomeMessage')->name('welcome-message.update');
 
 
         Route::get('/{user?}', 'UserController@index')->name('show');

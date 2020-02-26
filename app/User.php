@@ -29,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'password','avatar','admin','department','sub_unit','level','designation','dob','sex', 'staff_id'
+        'name', 'email', 'username', 'password','avatar','admin','department','sub_unit','level','designation','dob','sex', 'staff_id', 'read_welcome_message'
     ];
 
 
@@ -160,7 +160,7 @@ class User extends Authenticatable
     }
 
     public function getDobAttribute($value) {
-        return !is_null($value) ? Carbon::parse($value)->toFormattedDateString() : '';
+        return !is_null($value) ? Carbon::parse($value)->format('M d') : '';
     }
 
     public function getUserEmailAttribute() {

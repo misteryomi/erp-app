@@ -77,3 +77,7 @@
 .modal#anouncementModal {
     z-index: 100000000000!important;
 }
+
+.select2-container--open {
+    z-index: 9999999
+}

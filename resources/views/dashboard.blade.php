@@ -144,7 +144,7 @@
                         <div class="card-body">
                             <ul class="list-group list-group-flush list my--3">
                                 @foreach($latestStaff as $user)
-                                <li class="list-group-item px-0">
+                                <li class="list-group-item px-0 py-2">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                         <!-- Avatar -->
@@ -154,7 +154,7 @@
                                     </div>
                                     <div class="col ml--2">
                                     {{ $user->ID }}
-                                        <a href="{{ route('profile.show', ['user' => $user->username]) }}">{{ $user->name }}</a>
+                                        <a href="{{ route('profile.show', ['user' => $user->username]) }}"><small>{{ $user->name }}</small></a>
                                         @if($user->created_at)
                                         <small class="d-block text-muted">Joined {{ $user->created_at->diffForHumans() }}</small>
                                         @endif
@@ -263,6 +263,7 @@
 
 
 
+@if(!auth()->user()->read_welcome_message)
     <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModal" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -287,6 +288,20 @@
             </div>
         </div>
     </div>
+@endif
 
 </div>
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready( function() {
+  $('#welcomeModal').on('hidden.bs.modal', function () {
+      $.post('/profile/read-welcome-message', function(data) {
+        console.log(data);
+      });
+  })
+
+})
+</script>
 @endsection
