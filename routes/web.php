@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function() use ($sub_routes) {
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notification/{notification}', 'NotificationController@show')->name('notification.show');
 
-    Route::get('/documents', 'Documents\FileManagerController')->name('documents');
+Route::get('/documents', 'Documents\FileManagerController')->name('documents');
 
 });
