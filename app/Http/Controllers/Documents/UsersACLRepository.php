@@ -53,7 +53,7 @@ class UsersACLRepository implements ACLRepository
         $path = public_path('files/'.$username);
 
         if(!File::isDirectory($path)) {
-            File::makeDirectory($path, 077, true, true);
+            File::makeDirectory($path, 0777, true, true);
         }
     }
 }
