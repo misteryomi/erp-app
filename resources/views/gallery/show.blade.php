@@ -16,7 +16,7 @@
 @endsection
 @section('content')
 
-    <div id="irs_gallery_files"></div>
+    <div id="irs_gallery_files" data-folderid="{{ $folder->id }}"></div>
 
 
 
@@ -54,12 +54,4 @@
     </div>
 </div>
 @endsection
-@section('styles')
-<link rel="stylesheet" href="{{ asset('assets/vendor/simplelightbox-master/simplelightbox.min.css') }}" type="text/css">
-@endsection
-@section('scripts')
-<script src="{{ asset('assets/vendor/simplelightbox-master/simple-lightbox.min.js') }}"></script>
-<script>
-   $('.gallery a').simpleLightbox();
-</script>
-@endsection
+

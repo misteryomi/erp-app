@@ -2,6 +2,10 @@
     @foreach($notifications as $notification)
     <a href="{{ route('notification.show', ['notification' => $notification->id]) }}" class="list-group-item list-group-item-action">
       <div class="row align-items-center">
+        <div class="col-auto">
+          <!-- Avatar -->
+          <img alt="" src="{{ $notification->user ? $notification->user->avatar : '' }}" class="avatar rounded-circle">
+        </div>        
         <div class="col mr-2 ml--2">
           <div class="d-flex justify-content-between align-items-center">
             <div>

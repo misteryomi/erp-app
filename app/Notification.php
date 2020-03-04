@@ -14,6 +14,10 @@ class Notification extends Model
         'read_at' => 'datetime:Y-m-d',
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'notifiable_id');
+    }
+
     public function queue(string $message, string $route, int $user_id = null,  array $params = null) {
         $this->create([
             'id' => Str::uuid(),

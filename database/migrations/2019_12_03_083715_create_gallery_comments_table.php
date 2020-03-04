@@ -16,6 +16,8 @@ class CreateGalleryCommentsTable extends Migration
         Schema::create('gallery_comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('gallery_id');
+            $table->integer('user_id');
+            $table->boolean('is_anonymous')->default(0);
             $table->string('comment');
             $table->timestamps();
 

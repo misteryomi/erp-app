@@ -26,6 +26,7 @@ class WhistleBlowingController extends Controller
         $formData =  $this->form->storeFormData();
         $requestData = $request->all();
 
+        dd($requestData);
         //Store Data
     }
 

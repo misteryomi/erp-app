@@ -15,6 +15,7 @@ class GalleryResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'src' => $this->url,
             'thumbnail' => $this->url,
             'thumbnailWidth' => 320,

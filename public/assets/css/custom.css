@@ -81,3 +81,45 @@
 .select2-container--open {
     z-index: 9999999
 }
+
+
+#fullscreen {
+    padding: 0 !important; 
+  }
+  #fullscreen.modal-dialog {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    margin: 0;
+  }
+  #fullscreen .modal-content {
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: rgba(29, 29, 29, 0.7)!important;
+  }
+  #fullscreen .modal-body {
+    overflow-y: auto;
+    padding: 5.5rem;
+  }
+  #fullscreen .close>span:not(.sr-only) {
+      color: #fff
+  }
+
+.carousel-control-prev {
+    left: -100px!important;
+}
+
+.carousel-control-next {
+    right: -100px!important
+}
+  
+
+  @media (min-width: 576px) {
+    #fullscreen.modal-dialog {
+        max-width: none!important;
+        margin: 0!important;
+        height: 100%
+    }
+    
+  }

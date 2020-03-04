@@ -17,4 +17,8 @@ class Gallery extends Model
     public function folder() {
         return $this->belongsTo(GalleryFolder::class);
     }
+
+    public function comments() {
+        return $this->hasMany(GalleryComment::class, 'gallery_id', 'id');
+    }
 }

@@ -24,8 +24,11 @@ class BoardRoomBookingController extends Controller
 
     public function store(Request $request) {
         $formData =  $this->form->storeFormData();
+        
         $requestData = $request->all();
 
+
+        dd($requestData);
         //Store Data
     }
 
