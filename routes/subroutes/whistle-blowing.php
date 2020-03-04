@@ -1,7 +1,7 @@
 <?php
 
 Route::name('whistle-blowing.')->prefix('whistleblowing')->namespace('UtilityForms')->middleware('auth')->group(function() {
-    Route::get('/', 'WhistleBlowingController@create')->name('create');
+    Route::get('/', 'WhistleBlowingController@create')->name('index');
     Route::post('/', 'WhistleBlowingController@store')->name('store');
 
 
