@@ -44,13 +44,13 @@ class UsersACLRepository implements ACLRepository
             ['disk' => 'documents', 'path' => 'HR', 'access' => 1],                              // only read
             ['disk' => 'documents', 'path' => 'HR/*', 'access' => $canAdmin ? 2 : 1],                              // only read
             ['disk' => 'documents', 'path' => $username, 'access' => 1],        // only read
-            ['disk' => 'documents', 'path' => $username .'/*', 'access' => 1],  // read and write
+            ['disk' => 'documents', 'path' => $username .'/*', 'access' => 2],  // read and write
         ];
     }
 
 
     private function createUserDirectory($username) {
-        $path = public_path('files/'.$username);
+        $path = public_path('documents/'.$username);
 
         if(!File::isDirectory($path)) {
             File::makeDirectory($path, 0777, true, true);

@@ -32,7 +32,7 @@ return [
      *
      * null - auto select the first disk in the disk list
      */
-    'leftDisk' => 'documents',
+    'leftDisk' => null,
 
     /**
      * Default disk for right manager
@@ -46,7 +46,7 @@ return [
      *
      * null - root directory
      */
-    'leftPath' => 'public',
+    'leftPath' => null,
 
     /**
      * Default path for right manager
@@ -150,14 +150,14 @@ return [
      *
      * access: 0 - deny, 1 - read, 2 - read/write
      */
-    'aclRules' => [
-        null => [
-            // ['disk' => 'hr', 'path' => '/*', 'access' => 1],
-        ],
-        1 => [
-            // ['disk' => 'hr', 'path' => '/*', 'access' => 1],
-            //['disk' => 'public', 'path' => 'images/arch*.jpg', 'access' => 2],
-            //['disk' => 'public', 'path' => 'files/*', 'access' => 1],
-        ],
-    ],
+    // 'aclRules' => [
+    //     null => [
+    //         // ['disk' => 'hr', 'path' => '/*', 'access' => 1],
+    //     ],
+    //     1 => [
+    //         // ['disk' => 'hr', 'path' => '/*', 'access' => 1],
+    //         //['disk' => 'public', 'path' => 'images/arch*.jpg', 'access' => 2],
+    //         //['disk' => 'public', 'path' => 'files/*', 'access' => 1],
+    //     ],
+    // ],
 ];

@@ -68,8 +68,8 @@ return [
 
         'documents' => [
             'driver' => 'local',
-            'root' => public_path('files'),
-            'url' => env('APP_URL').'/files',
+            'root' => public_path('documents'),
+            'url' => env('APP_URL').'/documents',
         ],
     ],
 
