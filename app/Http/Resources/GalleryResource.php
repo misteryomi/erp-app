@@ -20,7 +20,7 @@ class GalleryResource extends JsonResource
             'thumbnail' => $this->url,
             'thumbnailWidth' => 320,
             'thumbnailHeight' => 213,
-            'caption' => $this->description
+            'caption' => $this->caption
         ];
     }
 }

@@ -62,7 +62,12 @@ class GalleryCarousel extends Component {
                         </Col>
                         <Col md style={{paddingTop: 20, paddingRight: 40}}>
                           {/* <h3>First slide label</h3> */}
-                          <p>{item.caption}</p>
+                          {item.caption && (
+                            <React.Fragment>
+                            <p>{item.caption}</p>
+                            <hr/>                              
+                            </React.Fragment>
+                          )}
                           <Comment gallery_id={item.id} onAddComment={(comment) => this.setState({comments: [comment, ...comments]})} />
                           <Comments comments={comments}/>
                         </Col>

@@ -1,11 +1,11 @@
 
    <!-- Sidenav -->
-  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-dark bg-default" id="sidenav-main">
+  <nav class="sidenav navbar navbar-vertical fixed-left navbar-expand-xs navbar-dark bg-default">
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="navbar-inner">
         <!-- Collapse -->
-        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse">
           <!-- Nav items -->
           <ul class="navbar-nav">
 
