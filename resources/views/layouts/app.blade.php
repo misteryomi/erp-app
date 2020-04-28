@@ -12,6 +12,18 @@
     @include('layouts.partials.navbar')
 
     @yield('wide_content')
+    
+    @if(isset($page_title))
+        <div class="header bg-default pt-5 pb-6">
+            <div class="container-fluid">
+                <div class="header-body">
+                    <div class="pt-2 mb-3 text-light">
+                        <h1 class="text-light">{{ $page_title }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    @endif
 
     <div class="container mt-5">
         @yield('content')

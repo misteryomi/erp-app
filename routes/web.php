@@ -33,6 +33,13 @@ Route::middleware('auth')->group(function() use ($sub_routes) {
     Route::get('/notifications', 'NotificationController@index')->name('notifications');
     Route::get('/notification/{notification}', 'NotificationController@show')->name('notification.show');
 
-Route::get('/documents', 'Documents\FileManagerController')->name('documents');
+
+    Route::get('/payslip', 'PaySlipController@upload');
+    Route::post('/payslip', 'PaySlipController@store')->name('payslip.upload');
+
+    Route::get('/ippis', 'IppisController@upload');
+    Route::post('/payslip', 'IppisController@store')->name('ippis.upload');
+
+    Route::get('/documents', 'Documents\FileManagerController')->name('documents');
 
 });
