@@ -169,6 +169,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         MikeMcLin\WpPassword\WpPasswordProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
         // Maatwebsite\Excel\ExcelServiceProvider::class,
 
@@ -231,8 +232,13 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
     
         // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+=======
+
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+>>>>>>> 91c3c8e957ac7f3fc23b8f7a5a9f835b38fd2594
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class
 
     ],
